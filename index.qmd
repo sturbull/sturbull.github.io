@@ -5,7 +5,9 @@ title: "About Me"
 
 ![](static/pictures/Synergia%202023-110.jpg){.card-img fig-align="center"}
 
-Hi! I'm Steven Turnbull, a data scientist with a wide range of interests. I use this site to post about random things that I find interesting!
+Hi! I'm Steven Turnbull, a data scientist with a wide range of interests. 
+
+I use this site to post about random things that I find interesting!
 
 ### Some Things I Have Worked On
 - [PhD Thesis in Education](https://researchspace.auckland.ac.nz/handle/2292/54611)

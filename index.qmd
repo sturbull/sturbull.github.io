@@ -3,7 +3,7 @@ title: "About Me"
 ---
 
 
-![](static/pictures/Synergia%202023-110.jpg){fig-align="center" height=30% width=30%}
+![](static/pictures/Synergia%202023-110.jpg){fig-align="center" height=40% width=40%}
 
 Hi! I'm Steven Turnbull, a data scientist with a wide range of interests. 
 I use this site to post about random things that I find interesting!

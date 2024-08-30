@@ -10,8 +10,6 @@ website:
         href: https://github.com/sturbull/
       - icon: linkedin
         href: https://www.linkedin.com/in/steven-turnbull-122b73156/
-      - text: Home
-        href: index.qmd 
       - text: Blog
         href: blog.qmd
 

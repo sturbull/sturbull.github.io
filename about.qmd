@@ -2,8 +2,11 @@
 title: "About"
 ---
 
-About this site
 
-```{r}
-1 + 1
-```
+::: {.card-img}
+![](static/pictures/Synergia%202023-110.jpg)
+:::
+
+::: {.border}
+This content can be styled with a border
+:::

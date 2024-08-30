@@ -9,7 +9,7 @@ Hi! I'm Steven Turnbull, a data scientist with a wide range of interests.
 I use this site to post about random things that I find interesting!
 
 ### Some Things I Have Worked On
-- [PhD Thesis in Education](https://researchspace.auckland.ac.nz/handle/2292/54611)
+- [PhD Thesis in Education investigating student pathways through STEM](https://researchspace.auckland.ac.nz/handle/2292/54611)
 - [COVID-19 Network Modelling](https://www.pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/)
 - [Network and Geospatial Analysis](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/)
 - [Data Visualisation](https://github.com/sturbull/tidytuesday)

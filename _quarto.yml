@@ -3,12 +3,17 @@ project:
   output-dir: docs
 
 website:
-  title: "Steven Turnbull"
+  title: "Dr Steven Turnbull"
   navbar:
     left:
-      - href: index.qmd
-        text: Home
-      - about.qmd
+      - icon: github
+        href: https://github.com/sturbull/
+      - icon: linkedin
+        href: https://www.linkedin.com/in/steven-turnbull-122b73156/
+      - text: Home
+        href: index.qmd 
+      - text: Blog
+        href: blog.qmd
 
 format:
   html:

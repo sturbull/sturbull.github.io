@@ -10,23 +10,25 @@ execute:
 editor_options: 
   chunk_output_type: console
 ---
-
+```{r,echo=F}
+library(here)
+```
 # Scraping the Barrel
 There's been so many times that I've wanted to pull location information from a website or file containing a set of addresses. This can be achieved by many hours of manual copy and pasting, a task that may even be impossible depending on the scale of the data. We can save time and sanity by making our computers do the work for us. Websites are (usually) highly organised and structured, making them perfect for programming tasks. In this post, I'll show you how you can do this.
 
-First, we want to grab data from the website we are interested in. Here's a screen shot of Tennis NZs club directory. You can see it contains a map with tennis clubs highlighted, but the information isn't really accessible. 
-![Map of Tennis Clubs in Auckland]('inputs/tennis/Screenshot 2024-08-31 123843.png'){fig-align="center" height=50% width=50%}
+First, we want to grab data from the website we are interested in. Here's a screen shot of Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) showing where to play. You can see it contains a map with tennis clubs highlighted, but the information isn't immediately accessible. You could scroll through each entry on the left (>300 clubs) and copy and paste the information out, but that's not fun.  
 
-There are two ways we can pull this information. We can use the webscraper package `rvest` to directly pull the html from the site. For our use case (to ensure reproducibility), I'll download a copy of the html directly - simply right click on the page, and click 'save as'. We'll have the the file `Tennis NZ - Where to Play.html` available for us to look at in more detail. 
+![Map of Tennis Clubs in Auckland](Screenshot 2024-08-31 - map.png){fig-align="center" height=90% width=90%}
+
+There are two ways we can pull this information. We can use the webscraper package [`rvest`](https://rvest.tidyverse.org/) to directly pull the html from the site using `read_html(website_url)`. For our use case ( and to ensure reproducibility), I'll download a copy of the html directly - simply right click on the page, and click 'save as'. We'll have the the file `Tennis NZ - Where to Play.html` available for us to look at in more detail. 
 
 The code below loads this `.html` file. It then uses tools from the `rvest` package to grab the specific bits of information we are interested in. By right clicking on a webpage and clicking `inspect`, you can focus on the parts of the website that you are interested in. In our case, we will be pulling the contents of `store-point-results`
-![Map of Tennis Clubs in Auckland]('inputs/tennis/Screenshot 2024-08-31 - inspect.png'){fig-align="center" height=50% width=50%}
+![Map of Tennis Clubs in Auckland](Screenshot 2024-08-31 - inspect.png){fig-align="center" height=90% width=90%}
 
 ```{r load data}
 library(rvest)
 library(dplyr)
 library(stringr)
-library(here)
 # Read the HTML content from the file
 html_content <- read_html(here("inputs","tennis","Tennis NZ - Where to Play.html"))
 

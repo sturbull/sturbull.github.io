@@ -17,16 +17,16 @@ I use this site to post about random things that I find interesting!
 
 ### Example Research Publications
 ::: {.border}
-- Emily P.Harvey, Joel A.Trent, Frank Mackenzie, Steven M. Turnbull and Dion R.J.O’Neale (2022). Calculating incidence of Influenza-like and COVID-like symptoms from Flutracking participatory survey
+- Emily P.Harvey, Joel A.Trent, Frank Mackenzie, *Steven M. Turnbull* and Dion R.J.O’Neale (2022). Calculating incidence of Influenza-like and COVID-like symptoms from Flutracking participatory survey
 data. MethodsX. [Link](https://doi.org/10.1016/j.mex.2022.101820)
 
-- Turnbull, S. M., Hobbs, M, Grey, L., Harvey, E., Scarrold, W., & O’Neale, D. (2022). Investigating the transmission risk of infectious disease outbreaks through the Aotearoa Co-incidence Network (ACN): a population-based study. The Lancet Regional Health-Western Pacific, 20, 100351. [Link]((https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/))
+- *Turnbull, S. M.*, Hobbs, M, Grey, L., Harvey, E., Scarrold, W., & O’Neale, D. (2022). Investigating the transmission risk of infectious disease outbreaks through the Aotearoa Co-incidence Network (ACN): a population-based study. The Lancet Regional Health-Western Pacific, 20, 100351. [Link]((https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/))
 
-- Stephens, J. M., Watson, P. W. S. J., Alansari, M., Lee, G., & Turnbull, S. M. (2021). Can Online Academic Integrity Instruction Affect University Students’ Perceptions of and Engagement in Academic Dishonesty? Results From a Natural Experiment in New Zealand. Frontiers in Psychology, 12, 366. [Link](https://pubmed.ncbi.nlm.nih.gov/33679506/)
+- Stephens, J. M., Watson, P. W. S. J., Alansari, M., Lee, G., & *Turnbull, S. M.* (2021). Can Online Academic Integrity Instruction Affect University Students’ Perceptions of and Engagement in Academic Dishonesty? Results From a Natural Experiment in New Zealand. Frontiers in Psychology, 12, 366. [Link](https://pubmed.ncbi.nlm.nih.gov/33679506/)
 
-- Turnbull, S. M., & O’Neale, D. R. (2021). Entropy of Co-Enrolment Networks Reveal Disparities in High School STEM Participation. Frontiers in big Data, 3, 56. [Link](https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2020.599016/full)
+- *Turnbull, S. M.*, & O’Neale, D. R. (2021). Entropy of Co-Enrolment Networks Reveal Disparities in High School STEM Participation. Frontiers in big Data, 3, 56. [Link](https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2020.599016/full)
 
-- Turnbull, S. M., Meissel, K., Locke, K., & O’Neale, D. R. (2020, April). The Impact of Science Capital on Self-Concept in Science: A Study of University Students in New Zealand. In Frontiers in Education (Vol. 5, p. 27). Frontiers [Link](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2020.00027/full)
+- *Turnbull, S. M.*, Meissel, K., Locke, K., & O’Neale, D. R. (2020, April). The Impact of Science Capital on Self-Concept in Science: A Study of University Students in New Zealand. In Frontiers in Education (Vol. 5, p. 27). Frontiers [Link](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2020.00027/full)
 
-- Turnbull, S. M., Locke, K., Vanholsbeeck, F., & O’Neale, D. R. (2019). Bourdieu, networks, and movements: Using the concepts of habitus, field and capital to understand a network analysis of gender differences in undergraduate physics. PloS one, 14(9), e0222357. [Link](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0222357)
+- *Turnbull, S. M.*, Locke, K., Vanholsbeeck, F., & O’Neale, D. R. (2019). Bourdieu, networks, and movements: Using the concepts of habitus, field and capital to understand a network analysis of gender differences in undergraduate physics. PloS one, 14(9), e0222357. [Link](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0222357)
 :::

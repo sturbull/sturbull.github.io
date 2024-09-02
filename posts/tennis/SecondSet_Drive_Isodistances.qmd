@@ -19,7 +19,7 @@ A couple of super powerful tools to have at our disposal are the isodistance and
 
 There are various services that you can use to get this information, but I will show you how you can carry out this work yourself. Using R, we can save time by progamatically going through all of our data automatically, and we can save money (no API calls to services needed). We're going to draw upon data on the New Zealand road network to carry out our work. Here's a map I made earlier that visualises this network, which is based on the data provided by Beere, P., (2016).
 
-[New Zealand Road Network](MappingNZ_2023_11_06.png){fig-align="center" height="90%" width="90%"}
+[New Zealand Road Network](MappingNZ_2023_11_06.png){fig-align="center" height="50%" width="50%"}
 
 As a first step, we're going to load up the tennis club data.
 
@@ -40,7 +40,10 @@ df_clean |>
 
 # Processing our Data
 
-First things first, we need to set up our spatial data. We're going to need 3 different pieces of data: 1: The shape file for Auckland Central. This is will be our map layer, showing where Auckland is.
+First things first, we need to set up our spatial data. We're going to need 3 different pieces of data: 
+
+## 1: The shape file for Auckland Central.
+This is will be our map layer, showing where Auckland is.
 
 ```{r auckland_map}
 library(sf)
@@ -73,7 +76,8 @@ auckland_sf <- nz_sf |>
 
 ```
 
-2: We'll need the road network data. We'll need to filter this data to only include roads within Auckland, and we'll also need to make sure the [Coordinate Reference System (CRS)](https://datacarpentry.org/organization-geospatial/03-crs.html) is the same as our Auckland data. The CRS tells R which map projection to use, and if the layers in our data use different projections, the map won't look correct. You can use the function `st_crs(data)` to get the CRS of an object, and the `st_transform` to set it as the same.
+## 2: We'll need the road network data. 
+We'll need to filter this data to only include roads within Auckland, and we'll also need to make sure the [Coordinate Reference System (CRS)](https://datacarpentry.org/organization-geospatial/03-crs.html) is the same as our Auckland data. The CRS tells R which map projection to use, and if the layers in our data use different projections, the map won't look correct. You can use the function `st_crs(data)` to get the CRS of an object, and the `st_transform` to set it as the same.
 
 As you can see, the road network data contains a range of variables identifying what type of road it is, and where it is located. We're going to filter out any roads that are not for cars.
 
@@ -99,7 +103,9 @@ head(auckland_roads) |>
   reactable()
 ```
 
-3: We need to transform our tennis club location data to be in the same format and CRS.
+
+## 3: We need to transform our tennis club location data
+We'll need to make sure it's in the same format and CRS.
 
 ```{r points_map}
 #clean point df and put to sf
@@ -224,13 +230,13 @@ ggplot() +
     legend.spacing = unit(0,"lines"),
     legend.position = "bottom",
     legend.text = element_text(size=20),
-    title = element_text(size=30)
+    title = element_text(size=20)
   ) +
    coord_sf(crs = 4326,
     xlim = c(174.6, 174.95),
     ylim = c(-37, -36.72)
   ) +
-  ggtitle("5km Driving Isodistances of Auckland Tennis Clubs")
+  ggtitle("5km Driving Isodistances of\nAuckland Tennis Clubs")
 
 ```
 

@@ -1,8 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sturbull.github.io/posts/tennis/SecondSet_Drive_Isodistances.html</loc>
-    <lastmod>2024-09-02T10:39:52.931Z</lastmod>
+    <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
+    <lastmod>2024-09-05T05:25:54.381Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/tennis/FourthSet_NiceEasyMaps.html</loc>
+    <lastmod>2024-09-05T01:41:01.712Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/index.html</loc>
@@ -18,6 +22,10 @@
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/tennis/FirstSet_Webscraping_and_GeoCoding.html</loc>
-    <lastmod>2024-08-31T06:37:34.597Z</lastmod>
+    <lastmod>2024-09-05T00:00:05.435Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/tennis/SecondSet_Drive_Isodistances.html</loc>
+    <lastmod>2024-09-05T05:24:13.242Z</lastmod>
   </url>
 </urlset>

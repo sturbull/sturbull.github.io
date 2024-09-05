@@ -19,7 +19,7 @@ A couple of super powerful tools to have at our disposal are the isodistance and
 
 There are various services that you can use to get this information, but I will show you how you can carry out this work yourself. Using R, we can save time by progamatically going through all of our data automatically, and we can save money (no API calls to services needed). We're going to draw upon data on the New Zealand road network to carry out our work. Here's a map I made earlier that visualises this network, which is based on the data provided by Beere, P., (2016).
 
-[New Zealand Road Network](MappingNZ_2023_11_06.png){fig-align="center" height="50%" width="50%"}
+![New Zealand Road Network](MappingNZ_2023_11_06.png){fig-align="center" height="50%" width="50%"}
 
 As a first step, we're going to load up the tennis club data.
 

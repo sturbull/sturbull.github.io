@@ -180,7 +180,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<div class="quarto-title-block"><div><h1 class="title">Fourth Set: Nice, Easy Mapping</h1><button type="button" class="btn code-tools-button" id="quarto-code-tools-source"><i class="bi"></i> Code</button></div></div>
+<div class="quarto-title-block"><div><h1 class="title">Fourth Set: Nice, Easy Mapping</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
   <div class="quarto-categories">
     <div class="quarto-category">R</div>
     <div class="quarto-category">Geospatial</div>
@@ -225,6 +225,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <p>In this post, I’ll be testing out a really easy way to make a map based on a set of coordinates, inspired by <a href="https://www.linkedin.com/posts/isaac-bain-4a0227172_nz-city-maps-ugcPost-7233959582157418497-StEs?utm_source=share&amp;utm_medium=member_desktop">this LinkedIn post by Isaac Bain</a>. In this post, Isaac shows how we can use the <a href="https://github.com/koenderks/rcityviews"><code>rcityviews</code></a> package to take a set of coordinates and feed them into the <code>rcityviews::cityview()</code> function to return a nice map.</p>
 <p>Lets take the first 6 tennis club addresses of set we scraped earlier.</p>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb1"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(here)</span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(dplyr)</span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(reactable)</span>
@@ -240,6 +242,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-13"><a href="#cb1-13" aria-hidden="true" tabindex="-1"></a>    <span class="at">bordered =</span> <span class="cn">TRUE</span>,</span>
 <span id="cb1-14"><a href="#cb1-14" aria-hidden="true" tabindex="-1"></a>    <span class="at">highlight =</span> <span class="cn">TRUE</span></span>
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 <div class="cell-output-display">
 <div class="reactable html-widget html-fill-item" id="htmlwidget-c3a4e9e6dfcc084f42f9" style="width:auto;height:auto;"></div>
 <script type="application/json" data-for="htmlwidget-c3a4e9e6dfcc084f42f9">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"name":["Next Generation Auckland Domain","Pompallier Lawn Tennis Club","Ngatira Tennis Club","Gladstone Tennis Club","Herne Bay Ponsonby Rackets Club","Mt Eden Tennis Club"],"storepoint_address":["1 Tennis Lane Parnell, Auckland,  1010, New Zealand","11 Green Street Ponsonby,  1011, New Zealand","24 Clive Road Mount Eden,  1024, New Zealand","120 Gladstone Road Parnell, Auckland,  1052, New Zealand","10 West End Road Herne Bay,  1022, New Zealand","22 Poronui Street Mount Eden,  1024, New Zealand"],"latitude":[-36.8543941,-36.8461653,-36.8728163,-36.8496888,-36.8494279,-36.8832081],"longitude":[174.7723731,174.7464657,174.7663288,174.7858216,174.7303048,174.7649894]},"columns":[{"id":"name","name":"name","type":"character"},{"id":"storepoint_address","name":"storepoint_address","type":"character"},{"id":"latitude","name":"latitude","type":"numeric"},{"id":"longitude","name":"longitude","type":"numeric"}],"highlight":true,"bordered":true,"dataKey":"c696adcc55735c3f21083957d5b8f0fd"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
@@ -247,6 +250,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>Then, it’s super straight forward to make a map! Here’s the code for a single address. Simply use the <code>new_city</code> function to set the centre location of our map to our desired coordinates, and then use the <code>cityview</code> function to render the image. the <code>rcityviews</code> package does all of the hard work of connecting to OpenStreetMap and pulling the map data.</p>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(rcityviews)</span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a> <span class="co"># Create a new city object</span></span>
@@ -266,6 +271,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb2-17"><a href="#cb2-17" aria-hidden="true" tabindex="-1"></a>)</span>
 <span id="cb2-18"><a href="#cb2-18" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb2-19"><a href="#cb2-19" aria-hidden="true" tabindex="-1"></a><span class="fu">print</span>(p)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -275,6 +281,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 </div>
 <p>And here’s the code for running through our set of addresses. We can set our own style for the maps manually.</p>
 <div class="cell">
+<details open="" class="code-fold">
+<summary>Code</summary>
 <div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="co"># set theme for map appearance</span></span>
 <span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a>myTheme <span class="ot">&lt;-</span> <span class="fu">list</span>(</span>
 <span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a>  <span class="at">colors =</span> <span class="fu">list</span>(</span>
@@ -348,6 +356,7 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb3-71"><a href="#cb3-71" aria-hidden="true" tabindex="-1"></a>    <span class="at">dpi =</span> <span class="dv">300</span></span>
 <span id="cb3-72"><a href="#cb3-72" aria-hidden="true" tabindex="-1"></a>    )</span>
 <span id="cb3-73"><a href="#cb3-73" aria-hidden="true" tabindex="-1"></a>}</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+</details>
 </div>
 <p>And here’s the result!</p>
 <div class="cell">

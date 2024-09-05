@@ -4,11 +4,11 @@ date: '2024-09-05'
 categories: ['R', 'Geospatial','New Zealand']
 description: 'In this post, I look at how you can use density functions to make a heat map of Tennis courts locations in Auckland, New Zealand.'
 author: 'Steven Turnbull'
-image: "./ThirdSet_Point_Density_Mapping/figure-html/plot-1.png"
+image: "./posts/tennis/ThirdSet_Point_Density_Mapping_files/figure-html/plot-1.png"
 twitter-card:
-  image: "./ThirdSet_Point_Density_Mapping/figure-html/plot-1.png"
+  image: "./posts/tennis/ThirdSet_Point_Density_Mapping_files/figure-html/plot-1.png"
 open-graph:
-  image: "./ThirdSet_Point_Density_Mapping/figure-html/plot-1.png"
+  image: "./posts/tennis/ThirdSet_Point_Density_Mapping/figure-html/plot-1.png"
 execute: 
   message: false
   warning: false

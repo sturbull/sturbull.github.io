@@ -10,4 +10,7 @@ listing:
   feed: false
 page-layout: full
 title-block-banner: false
+format:
+  html:
+    code-fold: false
 ---

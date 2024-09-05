@@ -23,12 +23,12 @@ There's been so many times that I've wanted to pull location information from a 
 
 First, we want to grab data from the website we are interested in. Here's a screen shot of Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) showing where to play. You can see it contains a map with tennis clubs highlighted, but the information isn't immediately accessible. You could scroll through each entry on the left (>300 clubs) and copy and paste the information out, but that's not fun.  
 
-![Map of Tennis Clubs in Auckland](Screenshot 2024-08-31 - map.png){fig-align="center" height=90% width=90%}
+![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_map.png){fig-align="center" height=90% width=90%}
 
 There are two ways we can pull this information. We can use the webscraper package [`rvest`](https://rvest.tidyverse.org/) to directly pull the html from the site using `read_html(website_url)`. For our use case ( and to ensure reproducibility), I'll download a copy of the html directly - simply right click on the page, and click 'save as'. We'll have the the file `Tennis NZ - Where to Play.html` available for us to look at in more detail. 
 
 The code below loads this `.html` file. It then uses tools from the `rvest` package to grab the specific bits of information we are interested in. By right clicking on a webpage and clicking `inspect`, you can focus on the parts of the website that you are interested in. In our case, we will be pulling the contents of `store-point-results`
-![Map of Tennis Clubs in Auckland](Screenshot 2024-08-31 - inspect.png){fig-align="center" height=90% width=90%}
+![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_inspect.png){fig-align="center" height=90% width=90%}
 
 ```{r load data}
 library(rvest)

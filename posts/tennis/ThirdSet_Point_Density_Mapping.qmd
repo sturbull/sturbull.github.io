@@ -13,7 +13,7 @@ editor_options:
 
 # Point Density Heat Maps
 
-In a [previous post](https://sturbull.github.io./posts/tennis/FirstSet_Webscraping_and_GeoCoding.html) I outlined how we can take a set of addresses scraped from Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) and geocode them to get latitude and longitude coordinates. Following this, we can carry out various forms of additional analysis (such as [mapping drive distances](https://sturbull.github.io./posts/tennis/SecondSet_Drive_Isodistances.html).
+In a [previous post](https://sturbull.github.io./posts/tennis/FirstSet_Webscraping_and_GeoCoding.html) I outlined how we can take a set of addresses scraped from Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) and geocode them to get latitude and longitude coordinates. Following this, we can carry out various forms of additional analysis (such as [mapping drive distances](https://sturbull.github.io./posts/tennis/SecondSet_Drive_Isodistances.html)).
 
 In this next post, I'll show you how you can take any set of points with coordinates, and make a heat map across an area showing the density of points. This post is heavily inspired by work carried out by Andrew Heiss, check out his work [here](https://www.andrewheiss.com/blog/2023/07/28/gradient-map-fills-r-sf/). the following post is very much an adaptation of his work!
 

@@ -63,7 +63,7 @@ p <- cityview(
 print(p)
 ```
 
-![Example nice map. Hopefully we can see the tennis courts dead centre.](example_nice_map.png){fig-align="center" height=90% width=90%}
+![Example nice map. Hopefully we can see the tennis courts dead centre.](./example_nice_map.png){fig-align="center" height=90% width=90%}
 
 And here's the code for running through our set of addresses. We can set our own style for the maps manually. 
 ```{r simple_plot, eval = F}

@@ -9,6 +9,11 @@ execute:
   warning: false
 editor_options: 
   chunk_output_type: console
+format:
+  html:
+    code-fold: show
+    code-tools: true
+
 ---
 ```{r,echo=F}
 library(here)

@@ -9,6 +9,10 @@ execute:
   warning: false
 editor_options: 
   chunk_output_type: console
+format:
+  html:
+    code-fold: show
+    code-tools: true
 ---
 
 # Point Density Heat Maps
@@ -31,7 +35,10 @@ df_clean <- df |>
 
 df_clean |> 
   head() |>
-  reactable()
+  reactable(
+    bordered = TRUE,
+    highlight = TRUE
+    )
 ```
 
 # Mapping

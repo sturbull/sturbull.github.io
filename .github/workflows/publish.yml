@@ -23,7 +23,7 @@ jobs:
           r-version: '4.4.0'
 
       - name: Install system dependencies
-        run:  sudo apt-get install -y libudunits2-dev libproj-dev
+        run:  sudo apt-get install -y libudunits2-dev libproj-dev libgdal-dev
 
       - name: Install R Dependencies
         uses: r-lib/actions/setup-renv@v2

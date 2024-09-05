@@ -31,7 +31,7 @@ df <- read.csv(here("inputs","tennis","tennis_coords.csv"))
 
 #We know the geocoding failed on some addresses, so we'll exclude those
 df_clean <- df |>
-  filter(!is.na(latitude) & !is.na(longitude)) 
+  filter(!is.na(latitude) | !is.na(longitude)) 
 
 df_clean |> 
   head() |>

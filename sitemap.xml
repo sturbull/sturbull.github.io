@@ -1,31 +1,27 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
-    <lastmod>2024-09-05T20:29:35.801Z</lastmod>
-  </url>
-  <url>
     <loc>https://sturbull.github.io/posts/tennis/FourthSet_NiceEasyMaps.html</loc>
-    <lastmod>2024-09-05T19:48:54.780Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/index.html</loc>
-    <lastmod>2024-09-11T00:46:35.191Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/blog.html</loc>
-    <lastmod>2024-09-05T20:06:26.724Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/ideas.html</loc>
-    <lastmod>2024-08-30T23:50:37.224Z</lastmod>
+    <lastmod>2024-09-11T00:58:48.141Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/tennis/FirstSet_Webscraping_and_GeoCoding.html</loc>
-    <lastmod>2024-09-05T19:45:08.968Z</lastmod>
+    <lastmod>2024-09-11T00:58:48.141Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/index.html</loc>
+    <lastmod>2024-09-11T00:58:48.141Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/blog.html</loc>
+    <lastmod>2024-09-11T00:58:48.125Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/tennis/SecondSet_Drive_Isodistances.html</loc>
-    <lastmod>2024-09-05T19:49:19.108Z</lastmod>
+    <lastmod>2024-09-11T00:58:48.141Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
+    <lastmod>2024-09-11T00:58:48.141Z</lastmod>
   </url>
 </urlset>

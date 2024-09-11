@@ -106,13 +106,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+
 <script src="../../site_libs/react-18.2.0/react.min.js"></script>
+
 <script src="../../site_libs/react-18.2.0/react-dom.min.js"></script>
+
 <script src="../../site_libs/reactwidget-2.0.0/react-tools.umd.cjs"></script>
+
 <link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
 <script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
 <link href="../../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+
 <script src="../../site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -166,9 +174,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="title-block-content">
     <img src="../../static/pictures/logo.jpg" alt="logo of company" width="80px" height="80px" style="margin-bottom: 20px; border-radius: 50%; object-fit: cover;">
         <div class="quarto-title-block"><div><h1 class="title">Fourth Set: Nice, Easy Mapping</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
-          <p class="author">Steven Turnbull</p>
-         <p class="date">September 5, 2024</p>
-       </div>
+     
+     
+     
+        <p class="author">Steven Turnbull</p>
+     
+        <p class="date">September 5, 2024</p>
+     
+      </div>
 
   <!-- Particle.js script loaded from a CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
@@ -199,15 +212,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     left: 0px;
     width: 100%;
     height: 100%;
+    z-index: 0; /* Ensure particles are behind the content */
   }
 
   .title-block-content {
+    position: relative; /* Needed to ensure z-index works */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 130px;
     padding-bottom: 130px;
+    z-index: 1; /* Set content above particles */
   }
 </style>
 
@@ -239,8 +255,8 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
 <span id="cb1-15"><a href="#cb1-15" aria-hidden="true" tabindex="-1"></a>  ) </span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
 </details>
 <div class="cell-output-display">
-<div class="reactable html-widget html-fill-item" id="htmlwidget-61c6a850a3d3620de8b7" style="width:auto;height:auto;"></div>
-<script type="application/json" data-for="htmlwidget-61c6a850a3d3620de8b7">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"name":["Next Generation Auckland Domain","Pompallier Lawn Tennis Club","Ngatira Tennis Club","Gladstone Tennis Club","Herne Bay Ponsonby Rackets Club","Mt Eden Tennis Club"],"storepoint_address":["1 Tennis Lane Parnell, Auckland,  1010, New Zealand","11 Green Street Ponsonby,  1011, New Zealand","24 Clive Road Mount Eden,  1024, New Zealand","120 Gladstone Road Parnell, Auckland,  1052, New Zealand","10 West End Road Herne Bay,  1022, New Zealand","22 Poronui Street Mount Eden,  1024, New Zealand"],"latitude":[-36.8543941,-36.8461653,-36.8728163,-36.8496888,-36.8494279,-36.8832081],"longitude":[174.7723731,174.7464657,174.7663288,174.7858216,174.7303048,174.7649894]},"columns":[{"id":"name","name":"name","type":"character"},{"id":"storepoint_address","name":"storepoint_address","type":"character"},{"id":"latitude","name":"latitude","type":"numeric"},{"id":"longitude","name":"longitude","type":"numeric"}],"highlight":true,"bordered":true,"dataKey":"c696adcc55735c3f21083957d5b8f0fd"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
+<div class="reactable html-widget html-fill-item" id="htmlwidget-cb7fa0eca66b9c37a61c" style="width:auto;height:auto;"></div>
+<script type="application/json" data-for="htmlwidget-cb7fa0eca66b9c37a61c">{"x":{"tag":{"name":"Reactable","attribs":{"data":{"name":["Next Generation Auckland Domain","Pompallier Lawn Tennis Club","Ngatira Tennis Club","Gladstone Tennis Club","Herne Bay Ponsonby Rackets Club","Mt Eden Tennis Club"],"storepoint_address":["1 Tennis Lane Parnell, Auckland,  1010, New Zealand","11 Green Street Ponsonby,  1011, New Zealand","24 Clive Road Mount Eden,  1024, New Zealand","120 Gladstone Road Parnell, Auckland,  1052, New Zealand","10 West End Road Herne Bay,  1022, New Zealand","22 Poronui Street Mount Eden,  1024, New Zealand"],"latitude":[-36.8543941,-36.8461653,-36.8728163,-36.8496888,-36.8494279,-36.8832081],"longitude":[174.7723731,174.7464657,174.7663288,174.7858216,174.7303048,174.7649894]},"columns":[{"id":"name","name":"name","type":"character"},{"id":"storepoint_address","name":"storepoint_address","type":"character"},{"id":"latitude","name":"latitude","type":"numeric"},{"id":"longitude","name":"longitude","type":"numeric"}],"highlight":true,"bordered":true,"dataKey":"c696adcc55735c3f21083957d5b8f0fd"},"children":[]},"class":"reactR_markup"},"evals":[],"jsHooks":[]}</script>
 </div>
 </div>
 <p>Then, it’s super straight forward to make a map! Here’s the code for a single address. Simply use the <code>new_city</code> function to set the centre location of our map to our desired coordinates, and then use the <code>cityview</code> function to render the image. the <code>rcityviews</code> package does all of the hard work of connecting to OpenStreetMap and pulling the map data.</p>

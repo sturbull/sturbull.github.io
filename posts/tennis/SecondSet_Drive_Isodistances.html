@@ -106,13 +106,21 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   }
 }</script>
 <script src="../../site_libs/core-js-2.5.3/shim.min.js"></script>
+
 <script src="../../site_libs/react-18.2.0/react.min.js"></script>
+
 <script src="../../site_libs/react-18.2.0/react-dom.min.js"></script>
+
 <script src="../../site_libs/reactwidget-2.0.0/react-tools.umd.cjs"></script>
+
 <link href="../../site_libs/htmltools-fill-0.5.8.1/fill.css" rel="stylesheet">
+
 <script src="../../site_libs/htmlwidgets-1.6.4/htmlwidgets.js"></script>
+
 <link href="../../site_libs/reactable-0.4.4/reactable.css" rel="stylesheet">
+
 <script src="../../site_libs/reactable-binding-0.4.4/reactable.js"></script>
+
 
 
 <link rel="stylesheet" href="../../styles.css">
@@ -166,9 +174,14 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
   <div class="title-block-content">
     <img src="../../static/pictures/logo.jpg" alt="logo of company" width="80px" height="80px" style="margin-bottom: 20px; border-radius: 50%; object-fit: cover;">
         <div class="quarto-title-block"><div><h1 class="title">Second Set: Drive Isodistances</h1><button type="button" class="btn code-tools-button dropdown-toggle" id="quarto-code-tools-menu" data-bs-toggle="dropdown" aria-expanded="false"><i class="bi"></i> Code</button><ul class="dropdown-menu dropdown-menu-end" aria-labelelledby="quarto-code-tools-menu"><li><a id="quarto-show-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Show All Code</a></li><li><a id="quarto-hide-all-code" class="dropdown-item" href="javascript:void(0)" role="button">Hide All Code</a></li><li><hr class="dropdown-divider"></li><li><a id="quarto-view-source" class="dropdown-item" href="javascript:void(0)" role="button">View Source</a></li></ul></div></div>
-          <p class="author">Steven Turnbull</p>
-         <p class="date">September 2, 2024</p>
-       </div>
+     
+     
+     
+        <p class="author">Steven Turnbull</p>
+     
+        <p class="date">September 2, 2024</p>
+     
+      </div>
 
   <!-- Particle.js script loaded from a CDN -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/particles.js/2.0.0/particles.min.js"></script>
@@ -207,15 +220,18 @@ pre > code.sourceCode > span > a:first-child::before { text-decoration: underlin
     left: 0px;
     width: 100%;
     height: 100%;
+    z-index: 0; /* Ensure particles are behind the content */
   }
 
   .title-block-content {
+    position: relative; /* Needed to ensure z-index works */
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     padding-top: 130px;
     padding-bottom: 130px;
+    z-index: 1; /* Set content above particles */
   }
 </style>
 

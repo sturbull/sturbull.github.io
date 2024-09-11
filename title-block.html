@@ -24,12 +24,12 @@
   <!-- Actual content on top of the particles-->
   <div class="title-block-content">
     <img
-      src="https://sturbull.github.io./static/pictures/logo.png"
+      src="../../static/pictures/logo.jpg"
       alt="logo of company"
       width="80px"
       height="80px"
-      style="margin-bottom: 20px"
-    />
+      style="margin-bottom: 20px; border-radius: 50%; object-fit: cover;"
+      />
     $if(title)$
     <h1 class="title">$title$</h1>
     $endif$ $if(subtitle)$
@@ -51,6 +51,6 @@
 
   <!-- use the particle js library with our own config (json file). -->
   <script>
-    particlesJS.load("particles-js", "https://sturbull.github.io./particles.json");
+    particlesJS.load("particles-js", "https://raw.githubusercontent.com/sturbull/sturbull.github.io/main/particles.json");
   </script>
 </header>

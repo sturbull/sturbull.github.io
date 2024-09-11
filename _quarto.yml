@@ -15,9 +15,14 @@ website:
 
 format:
   html:
-    theme: cosmo
+    template-partials: 
+      - title-block.html
+    theme:
+      dark: darkly
+      light: flatly
     css: styles.css
     toc: true
+    title-block-banner: true
 
 editor: visual
 

@@ -2,6 +2,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/population/visualising_ethnicities_census_2023.html",
       "/posts/tennis/FourthSet_NiceEasyMaps.html",
       "/posts/tennis/ThirdSet_Point_Density_Mapping.html",
       "/posts/tennis/SecondSet_Drive_Isodistances.html",

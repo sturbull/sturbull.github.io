@@ -4,6 +4,11 @@ date: '2024-12-12'
 categories: ['R', 'Automation','AI', 'Quarto']
 description: 'In this post, I show you how to make your own automated email summary using a local AI.'
 author: 'Steven Turnbull'
+image: "./images/ollama.png"
+twitter-card:
+  image: "./images/ollama.png"
+open-graph:
+  image: ".images/ollama.png"
 execute: 
   message: false
   warning: false
@@ -166,7 +171,7 @@ Once we have the data.frame with all of our information, we can run the `mall` f
 I then use the `gt` library to get a tidy table of the emails. The function `gt::as_raw_html()` will embed the table within the email we send.
 
 ::: callout-tip
-## You can update this code to read email attachments. Use the trinker library textreadr, and the function read_document() will be able to read both word and pdf documents. 
+## You can update this code to read email attachments. Use the trinker library textreadr, and the function read_document() will be able to read both word and pdf documents.
 :::
 
 # Send your Email using `blastula`
@@ -212,7 +217,7 @@ Here's an example of an email I get through each day, providing a summary of my 
 ![A summary of my morning emails](images/email_ai_example.png)
 
 ::: callout-caution
-## Always verify what your summary is telling you. This should always be the case when working with generative AI, but especially Local LLMs which are not as powerful and are prone to mistakes.  
+## Always verify what your summary is telling you. This should always be the case when working with generative AI, but especially Local LLMs which are not as powerful and are prone to mistakes.
 :::
 
 And there we have it, a free AI summary of our emails, that keeps our data local and secure!

@@ -4,6 +4,11 @@ date: '2024-08-30'
 categories: ['R', 'Geospatial','New Zealand']
 description: 'In this post, I look at how you can use a combination of webscraping and geocoding to get information on the location of Tennis courts in Auckland, New Zealand.'
 author: 'Steven Turnbull'
+image: "./Screenshot_2024-08-31_-_map.png"
+twitter-card:
+  image: "./Screenshot_2024-08-31_-_map.png"
+open-graph:
+  image: "./Screenshot_2024-08-31_-_map.png"
 execute: 
   message: false
   warning: false
@@ -13,22 +18,23 @@ format:
   html:
     code-fold: show
     code-tools: true
-
 ---
+
 ```{r,echo=F}
 library(here)
 ```
+
 # Scraping the Barrel
+
 There's been so many times that I've wanted to pull location information from a website or file containing a set of addresses. This can be achieved by many hours of manual copy and pasting, a task that may even be impossible depending on the scale of the data. We can save time and sanity by making our computers do the work for us. Websites are (usually) highly organised and structured, making them perfect for programming tasks. In this post, I'll show you how you can do this.
 
-First, we want to grab data from the website we are interested in. Here's a screen shot of Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) showing where to play. You can see it contains a map with tennis clubs highlighted, but the information isn't immediately accessible. You could scroll through each entry on the left (>300 clubs) and copy and paste the information out, but that's not fun.  
+First, we want to grab data from the website we are interested in. Here's a screen shot of Tennis NZs [website](https://tennis.kiwi/play/play-tennis/) showing where to play. You can see it contains a map with tennis clubs highlighted, but the information isn't immediately accessible. You could scroll through each entry on the left (\>300 clubs) and copy and paste the information out, but that's not fun.
 
-![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_map.png){fig-align="center" height=90% width=90%}
+![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_map.png){fig-align="center" height="90%" width="90%"}
 
-There are two ways we can pull this information. We can use the webscraper package [`rvest`](https://rvest.tidyverse.org/) to directly pull the html from the site using `read_html(website_url)`. For our use case ( and to ensure reproducibility), I'll download a copy of the html directly - simply right click on the page, and click 'save as'. We'll have the the file `Tennis NZ - Where to Play.html` available for us to look at in more detail. 
+There are two ways we can pull this information. We can use the webscraper package [`rvest`](https://rvest.tidyverse.org/) to directly pull the html from the site using `read_html(website_url)`. For our use case ( and to ensure reproducibility), I'll download a copy of the html directly - simply right click on the page, and click 'save as'. We'll have the the file `Tennis NZ - Where to Play.html` available for us to look at in more detail.
 
-The code below loads this `.html` file. It then uses tools from the `rvest` package to grab the specific bits of information we are interested in. By right clicking on a webpage and clicking `inspect`, you can focus on the parts of the website that you are interested in. In our case, we will be pulling the contents of `store-point-results`
-![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_inspect.png){fig-align="center" height=90% width=90%}
+The code below loads this `.html` file. It then uses tools from the `rvest` package to grab the specific bits of information we are interested in. By right clicking on a webpage and clicking `inspect`, you can focus on the parts of the website that you are interested in. In our case, we will be pulling the contents of `store-point-results` ![Map of Tennis Clubs in Auckland](./Screenshot_2024-08-31_-_inspect.png){fig-align="center" height="90%" width="90%"}
 
 ```{r load data}
 library(rvest)
@@ -91,12 +97,14 @@ tennis_df_clean <- tennis_df |>
   mutate(storepoint_address = str_replace_all(storepoint_address, "Remuera Remuera Remuera","Remuera")) 
 ```
 
-Now we have our clean scraped data, we can focus on geocoding!  
+Now we have our clean scraped data, we can focus on geocoding!
 
 # Geocode with one Simple Step
-Webscraping is a simple skill opens up a world of possibilies for geospatial analysis. With the set of addresses at hand, we can add on an additional step to augment our newly pulled data with additional information. In our case, unfortutely we were unable to find any data pertaining to longitude and latidude of tennis clubs. Luckily, the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) package makes it incredibly straight forward to get this information. 
+
+Webscraping is a simple skill opens up a world of possibilies for geospatial analysis. With the set of addresses at hand, we can add on an additional step to augment our newly pulled data with additional information. In our case, unfortutely we were unable to find any data pertaining to longitude and latidude of tennis clubs. Luckily, the [`tidygeocoder`](https://jessecambon.github.io/tidygeocoder/) package makes it incredibly straight forward to get this information.
 
 Here's a simple chunk of code that will go through a dataset of addresses and grab the longitude and latitude.
+
 ```{r geocode,eval = FALSE}
 library(tidygeocoder)
 
@@ -141,6 +149,7 @@ for(i in 1:nrow(tennis_df_clean)){
 ```
 
 And here's the results!
+
 ```{r table2,echo=F}
 library(reactable)
 head(read.csv(here("inputs","tennis","tennis_coords.csv"))) |>
@@ -153,6 +162,7 @@ head(read.csv(here("inputs","tennis","tennis_coords.csv"))) |>
 Note, some addresses may not get a result, it depends on the quality of the addresses and the geocoding service that you use. In our case, we know the data is patchy and I've used open street map to geocode. Other services can be found [here](https://jessecambon.github.io/tidygeocoder/articles/geocoder_services.html).
 
 # The Fruits of Our (minimal) Labour
+
 We've managed to pull publically available address data, use a geocoder to get the longitude and latitude coordinates, now it time to see what we've got. Through a combination of `ggplot2` and `ggiraph`, we are able to quickly visualise the newly process data points on an interactive map of Auckland. See the code below.
 
 ```{r map, fig.height = 10, fig.width=10, echo = T}
@@ -212,4 +222,4 @@ girafe(
 
 ```
 
-That's a wrap. Now that we have our data, there's a huge number of analysis opportunities. We could look at underlying population demographics to understand access, combine it with drive times data to understand potential catchment areas,build up our visualisation to be fully customisable and interactive. At the very least, hopefully this post will save someone some time away from the computer, manually copying and pasting addresses from a website into google maps! 
+That's a wrap. Now that we have our data, there's a huge number of analysis opportunities. We could look at underlying population demographics to understand access, combine it with drive times data to understand potential catchment areas,build up our visualisation to be fully customisable and interactive. At the very least, hopefully this post will save someone some time away from the computer, manually copying and pasting addresses from a website into google maps!

@@ -4,6 +4,11 @@ date: '2024-09-02'
 categories: ['R', 'Geospatial','New Zealand']
 description: 'In this post, I look at how you can use road network data to get drive time radii around Tennis courts in Auckland, New Zealand.'
 author: 'Steven Turnbull'
+image: "./MappingNZ_2023_11_06.png"
+twitter-card:
+  image: "./MappingNZ_2023_11_06.png"
+open-graph:
+  image: "./MappingNZ_2023_11_06.png"
 execute: 
   message: false
   warning: false
@@ -44,9 +49,10 @@ df_clean |>
 
 # Processing our Data
 
-First things first, we need to set up our spatial data. We're going to need 3 different pieces of data: 
+First things first, we need to set up our spatial data. We're going to need 3 different pieces of data:
 
 ## 1: The shape file for Auckland Central.
+
 This is will be our map layer, showing where Auckland is.
 
 ```{r auckland_map}
@@ -80,7 +86,8 @@ auckland_sf <- nz_sf |>
 
 ```
 
-## 2: We'll need the road network data. 
+## 2: We'll need the road network data.
+
 We'll need to filter this data to only include roads within Auckland, and we'll also need to make sure the [Coordinate Reference System (CRS)](https://datacarpentry.org/organization-geospatial/03-crs.html) is the same as our Auckland data. The CRS tells R which map projection to use, and if the layers in our data use different projections, the map won't look correct. You can use the function `st_crs(data)` to get the CRS of an object, and the `st_transform` to set it as the same.
 
 As you can see, the road network data contains a range of variables identifying what type of road it is, and where it is located. We're going to filter out any roads that are not for cars.
@@ -107,8 +114,8 @@ head(auckland_roads) |>
   reactable()
 ```
 
-
 ## 3: We need to transform our tennis club location data
+
 We'll need to make sure it's in the same format and CRS.
 
 ```{r points_map}
@@ -129,7 +136,7 @@ point_sf_auckland <- point_sf |>
 
 By getting the point data and the road map data into the same format, we've done much of the hard work. Our next step involves generating isodistance polygons from each of the tennis clubs based on the road network. We'll make use of the `calc_isochrones` function from the [`spNetwork`](https://rdrr.io/github/JeremyGelb/spNetwork/) package to accomplish this. The results of this function are passed onto the [`concaveman`](https://cran.r-project.org/web/packages/concaveman/index.html) package which provides polygons for our mapping use. The code below goes through each point in our tennis club data, and generates an isodistance around them of 5km.
 
-Note: This function can take a bit of time to run, depending on the processing power available. You can set multiple distance values, which is really handy, but for now we will stick to 5000m (5km). 
+Note: This function can take a bit of time to run, depending on the processing power available. You can set multiple distance values, which is really handy, but for now we will stick to 5000m (5km).
 
 ```{r isodistances, eval = F}
 library(spNetwork)
@@ -244,7 +251,6 @@ ggplot() +
 
 ```
 
-It's important to bear in mind the quality of the data is always important when drawing conclusions. For example, we know some tennis clubs are missing from our data, so some gaps in access may not really be gaps. This method also relies on having road network data available for use. [A lot of work](https://www.canterbury.ac.nz/content/dam/uoc-main-site/documents/pdfs/reports/geohealth-laboratory/Creating-a-Road-Network-Analysis-Layer-with-Travel-Time-Estimates-using-Opensource.pdf) can go into processing these data, while there are other open source options/libraries available as well, such [`openrouteservice`](https://openrouteservice.org/). 
+It's important to bear in mind the quality of the data is always important when drawing conclusions. For example, we know some tennis clubs are missing from our data, so some gaps in access may not really be gaps. This method also relies on having road network data available for use. [A lot of work](https://www.canterbury.ac.nz/content/dam/uoc-main-site/documents/pdfs/reports/geohealth-laboratory/Creating-a-Road-Network-Analysis-Layer-with-Travel-Time-Estimates-using-Opensource.pdf) can go into processing these data, while there are other open source options/libraries available as well, such [`openrouteservice`](https://openrouteservice.org/).
 
 The key advantages of this approach is that it avoids using API calls, instead using a local shape file of the NZ road network. This means that we could iterate through a whole range of distances, and process a whole load of data (even if it may take some time). Key things to watch out for, as always, is data quality. External services with an API may be more reliable.
-

@@ -47,9 +47,11 @@ df_clean |>
 ```
 
 # Mapping
-To map our data, we will just need a shapefile with the map for Auckland, and the data with the coordinates of the tennis clubs in that area. We'll load that up now. 
+
+To map our data, we will just need a shapefile with the map for Auckland, and the data with the coordinates of the tennis clubs in that area. We'll load that up now.
 
 ## Load the shape file for Auckland Central.
+
 This is will be our map layer, showing where Auckland is.
 
 ```{r auckland_map}
@@ -82,8 +84,8 @@ auckland_sf <- nz_sf |>
 
 ```
 
-
 ## 2: We need to get our tennis club location data
+
 We'll need to make sure it's in the same format and CRS.
 
 ```{r points_map}
@@ -99,10 +101,12 @@ point_sf_auckland <- point_sf |>
   st_transform(crs = 2193) 
 
 ```
+
 As mentioned in [Andrew Heiss's blog post](https://www.andrewheiss.com/blog/2023/07/28/gradient-map-fills-r-sf/), we need to ensure that the coordinate reference system is one that uses metres. This is why I've set each of `sf` objects to have crs 2193 (New Zealand Transverse Mercator (NZTM)).
 
 # Density by Grids
-Now we have our base map and the tennis location data, we can look at visualising our point density. There's a couple of useful ways we can show this data. The first will look at gridding the Auckland region up in to areas of equal size. 
+
+Now we have our base map and the tennis location data, we can look at visualising our point density. There's a couple of useful ways we can show this data. The first will look at gridding the Auckland region up in to areas of equal size.
 
 First up, we will split our map of Auckland into a 10X10 grid using the code below, and trim our grid so it only includes sections that overlap the auckland area. To accomplish this, we'll use the `st_intersection` function.
 
@@ -122,7 +126,8 @@ ggplot() +
   theme_void()
 ```
 
-We can then fill each section of the grid according to the number of points that fall within each section. 
+We can then fill each section of the grid according to the number of points that fall within each section.
+
 ```{r grid_fill, fig.height=10,fig.width=10}
 club_per_grid_box <- auckland_grid_map %>% 
   st_join(point_sf_auckland) %>% 
@@ -143,9 +148,9 @@ geom_sf(
 theme_void() 
 ```
 
-
 # Density Gradient
-You can see on the previous map that a couple of the grid sections had low values, but were actually quite close to a few tennis clubs. A different way to show the density of points that can account for this is to use a gradient fill. In basic terms, this takes our 10X10 grid and ramps it up. With this, we have a map that fills according to a density, rather than a distinct categorical count for each section. The result will be a map with a smoother looking fill. 
+
+You can see on the previous map that a couple of the grid sections had low values, but were actually quite close to a few tennis clubs. A different way to show the density of points that can account for this is to use a gradient fill. In basic terms, this takes our 10X10 grid and ramps it up. With this, we have a map that fills according to a density, rather than a distinct categorical count for each section. The result will be a map with a smoother looking fill.
 
 ```{r gradient_fill}
 library(spatstat)
@@ -200,6 +205,6 @@ ggplot() +
 
 ```
 
-Both the gridded and density point maps provide a really easy way to visualise hot and cold spots across a map in terms of specific coordinates. In our case, we can clearly see how tennis clubs are clustered around the centre of Auckland, becoming more sparse in the outer suburbs. 
+Both the gridded and density point maps provide a really easy way to visualise hot and cold spots across a map in terms of specific coordinates. In our case, we can clearly see how tennis clubs are clustered around the centre of Auckland, becoming more sparse in the outer suburbs.
 
-Again, I'd like to point to Andrew Heiss's blog post on this method, he goes into a lot more detail, and makes it super accessible to pick up and adapt the code (as I've done here). 
+Again, I'd like to point to Andrew Heiss's blog post on this method, he goes into a lot more detail, and makes it super accessible to pick up and adapt the code (as I've done here).

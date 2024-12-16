@@ -4,6 +4,11 @@ date: '2024-12-03'
 categories: ['R', 'Automation','AI', 'Quarto']
 description: 'In this post, I show you how to send emails directly from R, containing contents made in Quarto.'
 author: 'Steven Turnbull'
+image: "./test_email_example.png"
+twitter-card:
+  image: "./test_email_example.png"
+open-graph:
+  image: "./test_email_example.png"
 execute: 
   message: false
   warning: false

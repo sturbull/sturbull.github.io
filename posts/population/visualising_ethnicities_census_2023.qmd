@@ -13,16 +13,16 @@ format:
   html:
     code-fold: show
     code-tools: true
-
 ---
 
-
 # Big Data as Ducks(db) 🦆
+
 StatsNZ recently released their [Aotearoa Data Explorer](https://www.stats.govt.nz/tools/aotearoa-data-explorer/), a tool that makes accessing public data more accessible. The data is comprehensive and pretty clean, but it's pretty large (35 million rows), and has some quirks that we may want to handle now to save us pain at a later date.
 
-Our first obstacle is working with big data. Luckily, the `duckdb` makes it really easy. As [this post](https://duckdb.org/2024/10/09/analyzing-open-government-data-with-duckplyr) outlines, we can use the `duckplyr` library in R to load in our big data, manipulate it using dplyr functions, and it will find the most efficient course through our code and return our clean data. `duckplyr` is a great package because it does what it can in the most efficient way using duckdb, and for anything else it will revert to dplyr as normal, meaning our code will run through. If you haven't tried out duckdb yet, this method makes practically zero difference to your normal tidyverse workflow.  
+Our first obstacle is working with big data. Luckily, the `duckdb` makes it really easy. As [this post](https://duckdb.org/2024/10/09/analyzing-open-government-data-with-duckplyr) outlines, we can use the `duckplyr` library in R to load in our big data, manipulate it using dplyr functions, and it will find the most efficient course through our code and return our clean data. `duckplyr` is a great package because it does what it can in the most efficient way using duckdb, and for anything else it will revert to dplyr as normal, meaning our code will run through. If you haven't tried out duckdb yet, this method makes practically zero difference to your normal tidyverse workflow.
 
 Here are the libraries we'll need for running our code.
+
 ```{r, message = F, warning = F}
 library(duckplyr)
 library(stringr)
@@ -39,7 +39,7 @@ In our case, we want to reduce the size of the dataset by only including census 
 
 Multiple total count values are also included within each category, which can be useful in specific cases but is likely lead to some unforseen errors with double counting if we came back to use this dataset at a later date and forget it's there. To make our future lives easier, I'll exclude these cases - we can always get the total count by summing up the values in that category/combination of categories.
 
-I'll also use [regex](https://r4ds.hadley.nz/regexps) to add in a couple more columns that explain what each row represents in terms of the Area type and Age Band type. This will make it easier to work with in future.  
+I'll also use [regex](https://r4ds.hadley.nz/regexps) to add in a couple more columns that explain what each row represents in terms of the Area type and Age Band type. This will make it easier to work with in future.
 
 ```{r, eval = F, message = F, warning = F}
 time1 <- Sys.time()
@@ -103,17 +103,18 @@ cat("Time taken: ", Sys.time() - time1)
 ```
 
 # Treating Populations as People 👨‍👩‍👧‍👦
+
 The data we have from StatsNZ represents ethnicity in a way that maximises the amount of information about the groups people identify with using combinations of ethnicity groups. This is really cool, as it gives depth to our numbers and allows us to treat people how they want to be treated. When working with big data, it can be really easy to forget that each count represents someone significant, each value is a person, and behind each category is a choice that someone made.
 
-Often categories such as ethnicity are simplified down as it can be tricky to summarise in a cohesive way. Maintaining some complexity in the categories we want to represent can introduce additional design decisions. With so many ethnicity groupings, axis labels can get cluttered and hard to read. Luckily, there is an easy way!   
+Often categories such as ethnicity are simplified down as it can be tricky to summarise in a cohesive way. Maintaining some complexity in the categories we want to represent can introduce additional design decisions. With so many ethnicity groupings, axis labels can get cluttered and hard to read. Luckily, there is an easy way!
 
 ```{r, include = F}
 df <- read_parquet("C:/Users/steven.turnbull_syne/Documents/GitHub/sturbull.github.io/inputs/Population/census_population_2023_clean.parquet")
 
 ```
 
-
 # UpSet Plots Will Make You Happy 😃
+
 This is the perfect use case for what are known as `UpSet Charts`. While the name has depressing connotations, the plot itself will make everyone's life easier. Simply put, an UpSet chart represents the combinations of a catgeorical variable as an additional plot where the axis text would normally sit. [This walkthrough by Albert Rapp](https://albert-rapp.de/posts/ggplot2-tips/26_upset_charts/26_upset_charts.html) shows how we can make these plots pretty easily using the `ggupset` library in R.
 
 But before we get to that, I'll carry out some additional cleaning steps, and reshape our data to work with the `ggupset` library.
@@ -155,6 +156,7 @@ ggupset_df <- df_ethnicity_clean |>
 ```
 
 And plot!
+
 ```{r,message=F,warning=F, fig.width=8,fig.height = 6,dpi=600}
 # Plot using ggtern
 ggupset_df|>
@@ -181,7 +183,7 @@ ggupset_df|>
     )
 ```
 
-UpSet plots make it really easy to identify which bars represent which categories, and when you have lots of combinations this is needed. One key thing that stands out in our data is that the Asian Only category is the second highest behind European. At first glance this may seem incorrect, we might expect Māori to be higher. However, plotting the total counts across categories using each combination (i.e, totalling up Māori, Māori/European, Māori/Pacific etc. into one group labelled Māori), we can see that Māori represent the second highest population overall. It just happens that Māori are more likely to identify with an additional ethnicity, while Asian are more likely to identify as only Asian. 
+UpSet plots make it really easy to identify which bars represent which categories, and when you have lots of combinations this is needed. One key thing that stands out in our data is that the Asian Only category is the second highest behind European. At first glance this may seem incorrect, we might expect Māori to be higher. However, plotting the total counts across categories using each combination (i.e, totalling up Māori, Māori/European, Māori/Pacific etc. into one group labelled Māori), we can see that Māori represent the second highest population overall. It just happens that Māori are more likely to identify with an additional ethnicity, while Asian are more likely to identify as only Asian.
 
 ```{r, message=F,warning=F, fig.width=8,fig.height = 6,dpi=600}
 #get count for each category overall  
@@ -211,4 +213,4 @@ unnest(ggupset_df, Combination) |>
   )
 ```
 
-Being able to easily visualise and explore our data in depth provides significant insights that we can miss when prioritising simpler, less detailed views of data. 
+Being able to easily visualise and explore our data in depth provides significant insights that we can miss when prioritising simpler, less detailed views of data.

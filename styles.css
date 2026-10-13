@@ -92,6 +92,30 @@ main a:not([class]) {
   color: var(--smt-muted-fg);
 }
 
+.smt-intro .smt-lead {
+  font-size: 1.35rem;
+}
+
+/* Mustard underline that draws in from the left on page load */
+.smt-mark {
+  color: var(--smt-fg);
+  font-weight: 600;
+  background: linear-gradient(var(--smt-accent), var(--smt-accent)) no-repeat 0 95% / 0% 0.3em;
+  -webkit-box-decoration-break: clone;
+  box-decoration-break: clone;
+  animation: smt-mark-draw 0.9s 0.3s cubic-bezier(0.2, 0.8, 0.2, 1) forwards;
+}
+
+.smt-mark ~ .smt-mark {
+  animation-delay: 0.7s;
+}
+
+@keyframes smt-mark-draw {
+  to {
+    background-size: 100% 0.3em;
+  }
+}
+
 .smt-actions {
   display: flex;
   flex-wrap: wrap;
@@ -494,6 +518,11 @@ a.smt-list-title:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .smt-mark {
+    animation: none;
+    background-size: 100% 0.3em;
+  }
+
   .smt-card,
   .smt-card-icon,
   .smt-card-arrow,

@@ -9,9 +9,9 @@ title-block-banner: false
 ::::::::: smt-page
 :::: smt-hero
 ::: smt-hero-text
-[Kia ora]{.smt-eyebrow}
+[Kia ora]{.smt-eyebrow}!
 
-[About]{.smt-display}
+More about me
 :::
 
 ![](static/pictures/headshot.jpg){.smt-avatar fig-alt="Photo of Steven Turnbull"}
@@ -21,26 +21,21 @@ title-block-banner: false
 ::: smt-prose
 Kia ora, I'm Steven, a data scientist and researcher from New Zealand (born in England), now living in San Diego. I've been lucky enough to have done some cool things:
 
-- I started out as a researcher in the sociology of education, and did a PhD [looking at student pathways through tertiary education](https://hdl.handle.net/2292/54611).
-- I was a member of [Te Pūnaha Matitini's Covid Modelling Aotearoa team](https://pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/), where I helped develop [synthetic population network models](https://doi.org/10.1016/j.lanwpc.2021.100351) for contagion modelling.
-- I've worked as a Data Scientist helping social and health sector organisations, building automated and reproducible analytical pipelines, evaluating programmes, and lending a hand to whatever issues people face.
+-   I started out as a researcher in the sociology of education, and did a PhD [looking at student pathways through tertiary education](https://hdl.handle.net/2292/54611).
+-   I was a member of [Te Pūnaha Matitini's Covid Modelling Aotearoa team](https://pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/), where I helped develop [synthetic population network models](https://doi.org/10.1016/j.lanwpc.2021.100351) for contagion modelling.
+-   I've worked as a Data Scientist helping social and health sector organisations, building automated and reproducible analytical pipelines, evaluating programmes, and lending a hand to whatever issues people face.
 
 I love learning new skills, and this passion has built a repertoire spanning programming (R, Python, SQL), survey design and administration, geospatial analysis, web development, applications of AI, qualitative analysis... the list goes on! I like stepping out of my comfort zone and picking up new skills to solve the problems I come across.
-
 :::
 ::::
 
 :::: smt-section
-[What I work on]{.smt-h2}
-
-::: smt-badges
-[Reproducible analytical pipelines]{.smt-badge} [Survey design and administration]{.smt-badge} [Geospatial analysis]{.smt-badge} [Applications of AI]{.smt-badge} [Qualitative analysis]{.smt-badge} [Sociology of education]{.smt-badge}
-:::
+[Examples of my work]{.smt-h2}
 
 ::: smt-list
 -   [PhD thesis in education investigating student pathways through STEM](https://researchspace.auckland.ac.nz/handle/2292/54611){.smt-list-title} University of Auckland ResearchSpace
 
--   [COVID-19 network modelling](https://www.pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/){.smt-list-title} 2020 Prime Minister's Science Prize
+-   [COVID-19 network modelling](https://www.pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/){.smt-list-title} I was a member of Te Pūnaha Matatini's Covid Modelling Aotearoa team
 
 -   [Network and geospatial analysis](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/){.smt-list-title} The Lancet Regional Health: Western Pacific
 

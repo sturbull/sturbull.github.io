@@ -1,5 +1,5 @@
 /*-- scss:defaults --*/
-@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
 
 // shadcn zinc tokens (dark)
 $smt-bg: #09090b;
@@ -17,7 +17,7 @@ $link-color: $smt-fg;
 $border-color: $smt-border;
 $border-radius: 0.75rem;
 
-$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+$font-family-sans-serif: "Noto Sans", system-ui, -apple-system, "Segoe UI", sans-serif;
 $headings-font-weight: 600;
 
 $navbar-bg: $smt-bg;

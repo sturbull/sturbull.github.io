@@ -6,22 +6,22 @@ toc: false
 title-block-banner: false
 ---
 
-:::::::::::::: smt-page
+::::::::: smt-page
 ::: smt-intro
-[Data scientist]{.smt-eyebrow}
+[Data scientist and researcher]{.smt-eyebrow}
 
 [Dr Steven Turnbull]{.smt-display}
 
-[I've always grappled with the role labels, but I'm a data scientist/researcher/generalist who loves problem solving.]{.smt-lead}
+[I'm a data scientist, researcher, and generalist. I enjoy [learning]{.smt-mark} new things and [solving]{.smt-mark} problems.]{.smt-lead}
 :::
 
-::::::::::: smt-cards
+::::::: smt-cards
 ::: {.smt-card .smt-glow}
 [<i class="bi bi-person"></i>]{.smt-card-icon}
 
 [About](about.qmd){.smt-card-title .stretched-link}
 
-[Background, PhD and the work I do.]{.smt-card-desc}
+[Background, PhD, and the work I do.]{.smt-card-desc}
 
 [<i class="bi bi-arrow-right"></i>]{.smt-card-arrow}
 :::
@@ -31,7 +31,7 @@ title-block-banner: false
 
 [Blog](blog.qmd){.smt-card-title .stretched-link}
 
-[Write-ups on R, automation, mapping and data.]{.smt-card-desc}
+[Write-ups on R, data, and anything that interests me!]{.smt-card-desc}
 
 [<i class="bi bi-arrow-right"></i>]{.smt-card-arrow}
 :::
@@ -41,7 +41,7 @@ title-block-banner: false
 
 [Publications](publications.qmd){.smt-card-title .stretched-link}
 
-[Peer-reviewed research, with links to ResearchGate, ORCID and Google Scholar.]{.smt-card-desc}
+[My research publications.]{.smt-card-desc}
 
 [<i class="bi bi-arrow-right"></i>]{.smt-card-arrow}
 :::
@@ -51,9 +51,10 @@ title-block-banner: false
 
 [Visualisations](visualisations.qmd){.smt-card-title .stretched-link}
 
-[Charts I've made for TidyTuesday.]{.smt-card-desc}
+[Where I try to straddle the line between pretty and useful.]{.smt-card-desc}
 
 [<i class="bi bi-arrow-right"></i>]{.smt-card-arrow}
 :::
-:::::::::::
-::::::::::::::
+:::::::
+
+:::::::::

@@ -1,9 +1,5 @@
 [
   {
-    "listing": "/visualisations.html",
-    "items": []
-  },
-  {
     "listing": "/blog.html",
     "items": [
       "/posts/automation/local_email_summary_ai.html",
@@ -14,5 +10,9 @@
       "/posts/tennis/SecondSet_Drive_Isodistances.html",
       "/posts/tennis/FirstSet_Webscraping_and_GeoCoding.html"
     ]
+  },
+  {
+    "listing": "/visualisations.html",
+    "items": []
   }
 ]

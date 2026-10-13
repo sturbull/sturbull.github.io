@@ -36,7 +36,7 @@ Pick the type from the result, not the effort. A large rewrite that leaves behav
 - A correction to a post's text, code or figures is `fix`.
 - Theme, SCSS, CSS and layout template changes follow the visual rule above.
 - `renv.lock` updates and Quarto configuration are `build`.
-- Commit rendered output (`docs/`, `_freeze/`) with the source change that produced it, under that change's type.
+- Commit `_freeze/` output with the source change that produced it, under that change's type. The rendered site is not committed to `main`; `quarto publish gh-pages` pushes it to the `gh-pages` branch.
 
 ## Subject
 

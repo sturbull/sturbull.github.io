@@ -1,7 +1,26 @@
-/* Landing page components, styled after shadcn/ui. Colour tokens (--smt-*) come from theme-light.scss and theme-dark.scss. */
+/* Site components, styled after shadcn/ui. Colour tokens (--smt-*) come from theme-light.scss and theme-dark.scss. */
 
 .navbar {
   border-bottom: 1px solid var(--smt-border);
+}
+
+.navbar .nav-link.active {
+  box-shadow: inset 0 -2px 0 var(--smt-accent);
+}
+
+::selection {
+  background: var(--smt-accent-glow);
+}
+
+:focus-visible {
+  outline: 2px solid var(--smt-accent);
+  outline-offset: 2px;
+}
+
+main a:not([class]) {
+  text-decoration-color: var(--smt-accent);
+  text-decoration-thickness: 1.5px;
+  text-underline-offset: 3px;
 }
 
 .smt-page {
@@ -10,25 +29,49 @@
   padding: 0 16px;
 }
 
-/* Hero */
-.smt-hero {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) 240px;
-  gap: 48px;
-  align-items: center;
-  padding: 64px 0 56px;
+/* Intro (index) and page headers */
+.smt-intro {
+  padding: 96px 0 48px;
 }
 
-.smt-hero-text p {
+.smt-intro p,
+.smt-page-head p {
+  margin: 0;
+}
+
+.smt-page-head {
+  padding: 64px 0 32px;
+}
+
+.smt-hero {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 180px;
+  gap: 48px;
+  align-items: center;
+  padding: 64px 0 40px;
+}
+
+.smt-hero p {
   margin: 0;
 }
 
 .smt-eyebrow {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
   margin-bottom: 12px;
   font-size: 0.875rem;
   font-weight: 500;
-  color: var(--smt-muted-fg);
+  color: var(--smt-accent-fg);
+}
+
+.smt-eyebrow::before {
+  content: "";
+  width: 8px;
+  height: 8px;
+  border-radius: 9999px;
+  background: var(--smt-accent);
+  box-shadow: 0 0 0 4px var(--smt-accent-soft);
 }
 
 .smt-display {
@@ -65,10 +108,6 @@
   box-shadow: var(--smt-shadow);
 }
 
-.smt-hero p:has(> .smt-avatar) {
-  margin: 0;
-}
-
 /* Buttons */
 a.smt-btn {
   display: inline-flex;
@@ -83,7 +122,7 @@ a.smt-btn {
   font-size: 0.875rem;
   font-weight: 500;
   text-decoration: none;
-  transition: opacity 0.15s, background-color 0.15s;
+  transition: opacity 0.15s, background-color 0.15s, border-color 0.15s;
 }
 
 a.smt-btn:hover {
@@ -100,7 +139,8 @@ a.smt-btn-outline {
 
 a.smt-btn-outline:hover {
   opacity: 1;
-  background: var(--smt-muted);
+  border-color: var(--smt-accent);
+  background: var(--smt-accent-soft);
   color: var(--smt-fg);
 }
 
@@ -118,17 +158,6 @@ a.smt-btn-outline:hover {
   letter-spacing: -0.01em;
 }
 
-.smt-section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 16px;
-}
-
-.smt-section-head p {
-  margin: 0;
-}
-
 .smt-prose {
   max-width: 42em;
   font-size: 1.05rem;
@@ -144,6 +173,9 @@ a.smt-btn-outline:hover {
 }
 
 a.smt-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
   font-size: 0.875rem;
   font-weight: 500;
   color: var(--smt-muted-fg);
@@ -151,7 +183,7 @@ a.smt-link {
 }
 
 a.smt-link:hover {
-  color: var(--smt-fg);
+  color: var(--smt-accent-fg);
 }
 
 /* Badges */
@@ -182,45 +214,108 @@ a.smt-badge-link {
   background: transparent;
   color: var(--smt-fg);
   text-decoration: none;
+  transition: border-color 0.15s, background-color 0.15s;
 }
 
 a.smt-badge-link:hover {
-  background: var(--smt-muted);
+  border-color: var(--smt-accent);
+  background: var(--smt-accent-soft);
 }
 
-/* Cards */
-.smt-grid {
+/* Edge light. _glow.html sets --mx/--my to the pointer position. ::before is a
+   soft spotlight inside the element; ::after is a 1px mustard rim, masked so
+   only the border shows, lit where the pointer is nearest. */
+.smt-glow {
+  --mx: 50%;
+  --my: 50%;
+  position: relative;
+  isolation: isolate;
+}
+
+.smt-glow::before,
+.smt-glow::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.smt-glow::before {
+  z-index: -1;
+  background: radial-gradient(360px circle at var(--mx) var(--my), var(--smt-accent-soft), transparent 45%);
+}
+
+.smt-glow::after {
+  padding: 1px;
+  background: radial-gradient(260px circle at var(--mx) var(--my), var(--smt-accent), transparent 60%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask-composite: exclude;
+}
+
+.smt-glow:hover::before,
+.smt-glow:hover::after,
+.smt-cards:hover .smt-glow::after {
+  opacity: 1;
+}
+
+/* Index cards */
+.smt-cards {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(min(260px, 100%), 1fr));
+  grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
   gap: 16px;
+  padding-bottom: 96px;
 }
 
 .smt-card {
-  position: relative;
   display: flex;
   flex-direction: column;
   gap: 6px;
-  padding: 20px;
+  padding: 24px;
   border: 1px solid var(--smt-border);
-  border-radius: 0.75rem;
+  border-radius: 1rem;
   background: var(--smt-bg);
   box-shadow: var(--smt-shadow);
-  transition: box-shadow 0.15s, border-color 0.15s;
-}
-
-.smt-card:has(.stretched-link):hover {
-  border-color: var(--smt-muted-fg);
-  box-shadow: var(--smt-shadow-hover);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), box-shadow 0.3s;
 }
 
 .smt-card p {
   margin: 0;
 }
 
+.smt-card:hover,
+.smt-card:focus-within {
+  transform: translateY(-4px);
+  box-shadow: 0 16px 32px -16px var(--smt-accent-glow), var(--smt-shadow-hover);
+}
+
+.smt-card-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 44px;
+  height: 44px;
+  margin-bottom: 14px;
+  border-radius: 0.75rem;
+  border: 1px solid var(--smt-border);
+  background: var(--smt-muted);
+  font-size: 1.25rem;
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), background-color 0.3s, border-color 0.3s, color 0.3s;
+}
+
+.smt-card:hover .smt-card-icon,
+.smt-card:focus-within .smt-card-icon {
+  transform: rotate(-8deg) scale(1.08);
+  border-color: var(--smt-accent);
+  background: var(--smt-accent);
+  color: #1c1400;
+}
+
 .smt-card-title {
-  display: block;
+  font-size: 1.15rem;
   font-weight: 600;
-  line-height: 1.4;
   color: var(--smt-fg);
   text-decoration: none;
 }
@@ -229,37 +324,33 @@ a.smt-card-title:hover {
   color: var(--smt-fg);
 }
 
-/* Latest posts */
-.smt-post {
-  padding: 0;
-  overflow: hidden;
+.smt-card-desc {
+  color: var(--smt-muted-fg);
+  font-size: 0.925rem;
+  line-height: 1.6;
 }
 
-.smt-post-img {
-  width: 100%;
-  aspect-ratio: 16 / 9;
-  object-fit: cover;
-  border-bottom: 1px solid var(--smt-border);
+.smt-card-arrow {
+  position: absolute;
+  top: 24px;
+  right: 24px;
+  color: var(--smt-muted-fg);
+  transition: transform 0.3s cubic-bezier(0.2, 0.8, 0.2, 1), color 0.3s;
 }
 
-.smt-post-img-empty {
-  background: var(--smt-muted);
+.smt-card:hover .smt-card-arrow,
+.smt-card:focus-within .smt-card-arrow {
+  transform: translateX(4px);
+  color: var(--smt-accent-fg);
 }
 
-.smt-post-body {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-  padding: 16px 20px 20px;
-}
-
-/* Publications */
-.smt-pubs ul {
+/* Lists: work areas, publications */
+.smt-list ul {
   padding-left: 0;
   list-style: none;
 }
 
-.smt-pubs li {
+.smt-list li {
   padding: 14px 0;
   border-bottom: 1px solid var(--smt-border);
   font-size: 0.925rem;
@@ -267,28 +358,155 @@ a.smt-card-title:hover {
   color: var(--smt-muted-fg);
 }
 
-.smt-pubs li:last-child {
+.smt-list li:last-child {
   border-bottom: none;
 }
 
-.smt-pubs li p {
+.smt-list li p {
   margin: 0;
 }
 
-.smt-pubs strong {
+.smt-list strong {
   color: var(--smt-fg);
   font-weight: 600;
 }
 
+.smt-list-title {
+  display: block;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--smt-fg);
+  text-decoration: none;
+}
+
+a.smt-list-title:hover {
+  color: var(--smt-fg);
+  text-decoration: underline;
+  text-decoration-color: var(--smt-accent);
+}
+
+/* Visualisations carousel */
+.smt-carousel {
+  --smt-frame-h: min(72vh, 680px);
+  padding-bottom: 64px;
+}
+
+.smt-slide {
+  margin: 0;
+}
+
+.smt-slide-frame {
+  height: var(--smt-frame-h);
+  padding: 16px;
+  border: 1px solid var(--smt-border);
+  border-radius: 1rem;
+  background: var(--smt-muted);
+}
+
+.smt-slide-frame img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+}
+
+.smt-slide-caption {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  max-width: 42em;
+  padding: 20px 4px 0;
+}
+
+.smt-slide-title {
+  font-size: 1.15rem;
+  font-weight: 600;
+}
+
+.smt-carousel .smt-carousel-btn {
+  top: calc(var(--smt-frame-h) / 2 - 22px);
+  bottom: auto;
+  width: 44px;
+  height: 44px;
+  margin: 0 12px;
+  border: 1px solid var(--smt-border);
+  border-radius: 9999px;
+  background: var(--smt-bg);
+  color: var(--smt-fg);
+  font-size: 1.1rem;
+  opacity: 0.9;
+  box-shadow: var(--smt-shadow-hover);
+  transition: border-color 0.15s, color 0.15s, transform 0.15s;
+}
+
+.smt-carousel .smt-carousel-btn:hover {
+  opacity: 1;
+  border-color: var(--smt-accent);
+  color: var(--smt-accent-fg);
+  transform: scale(1.06);
+}
+
+.smt-carousel .carousel-indicators {
+  position: static;
+  justify-content: flex-start;
+  gap: 6px;
+  margin: 20px 4px 0;
+}
+
+.smt-carousel .carousel-indicators [data-bs-target] {
+  width: 8px;
+  height: 8px;
+  margin: 0;
+  border: 0;
+  border-radius: 9999px;
+  background: var(--smt-border);
+  opacity: 1;
+  transition: width 0.3s, background-color 0.3s;
+}
+
+.smt-carousel .carousel-indicators .active {
+  width: 24px;
+  background: var(--smt-accent);
+}
+
 @media (max-width: 720px) {
+  .smt-intro {
+    padding: 56px 0 32px;
+  }
+
   .smt-hero {
     grid-template-columns: minmax(0, 1fr);
-    gap: 32px;
-    padding: 40px 0;
+    gap: 24px;
+    padding: 40px 0 32px;
   }
 
   .smt-hero > p:has(> .smt-avatar) {
     order: -1;
-    width: 160px;
+    width: 120px;
+  }
+
+  .smt-carousel {
+    --smt-frame-h: min(60vh, calc(100vw - 32px));
+  }
+
+  .smt-slide-frame {
+    padding: 8px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .smt-card,
+  .smt-card-icon,
+  .smt-card-arrow,
+  .smt-carousel .carousel-item {
+    transition: none;
+  }
+
+  .smt-card:hover,
+  .smt-card:focus-within,
+  .smt-card:hover .smt-card-icon,
+  .smt-card:focus-within .smt-card-icon,
+  .smt-card:hover .smt-card-arrow,
+  .smt-card:focus-within .smt-card-arrow {
+    transform: none;
   }
 }

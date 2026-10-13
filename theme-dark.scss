@@ -1,0 +1,34 @@
+/*-- scss:defaults --*/
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Montserrat:wght@700;800&display=swap');
+
+// shadcn zinc tokens (dark)
+$smt-bg: #09090b;
+$smt-fg: #fafafa;
+$smt-muted: #27272a;
+$smt-muted-fg: #a1a1aa;
+$smt-border: #27272a;
+
+$body-bg: $smt-bg;
+$body-color: $smt-fg;
+$primary: #fafafa;
+$link-color: $smt-fg;
+$border-color: $smt-border;
+$border-radius: 0.75rem;
+
+$font-family-sans-serif: "Inter", system-ui, -apple-system, "Segoe UI", sans-serif;
+$headings-font-weight: 600;
+
+$navbar-bg: $smt-bg;
+$navbar-fg: $smt-muted-fg;
+$navbar-hl: $smt-fg;
+
+/*-- scss:rules --*/
+:root {
+  --smt-bg: #{$smt-bg};
+  --smt-fg: #{$smt-fg};
+  --smt-muted: #{$smt-muted};
+  --smt-muted-fg: #{$smt-muted-fg};
+  --smt-border: #{$smt-border};
+  --smt-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+  --smt-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.5);
+}

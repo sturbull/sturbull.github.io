@@ -4,22 +4,34 @@ project:
 
 website:
   title: "Dr Steven Turnbull"
+  favicon: static/pictures/favicon.svg
   navbar:
+    logo:
+      light:
+        path: static/pictures/smt-logo-light.svg
+        alt: "SMT"
+      dark:
+        path: static/pictures/smt-logo-dark.svg
+        alt: "SMT"
+    title: false
     left:
-      - icon: github
-        href: https://github.com/sturbull/
-      - icon: linkedin
-        href: https://www.linkedin.com/in/steven-turnbull-122b73156/
       - text: Blog
         href: blog.qmd
+    right:
+      - icon: github
+        href: https://github.com/sturbull/
+        aria-label: GitHub
+      - icon: linkedin
+        href: https://www.linkedin.com/in/steven-turnbull-122b73156/
+        aria-label: LinkedIn
 
 format:
   html:
     template-partials: 
       - title-block.html
     theme:
-      dark: darkly
-      light: flatly
+      light: [flatly, theme-light.scss]
+      dark: [darkly, theme-dark.scss]
     css: styles.css
     toc: true
     title-block-banner: true

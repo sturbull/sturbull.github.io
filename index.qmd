@@ -1,35 +1,128 @@
 ---
-title: "About Me"
+pagetitle: "Dr Steven Turnbull"
+description: "I'm a data scientist who loves problem solving and understanding how data flows from operations to decision making."
+page-layout: full
+toc: false
+title-block-banner: false
+listing:
+  id: latest-posts
+  contents: posts/**/*.qmd
+  sort: "date desc"
+  max-items: 3
+  date-format: "D MMMM YYYY"
+  template: _landing-posts.ejs
+  feed: false
 format:
   html:
     code-fold: false
 ---
 
+:::::: {.smt-page}
 
-![](static/pictures/Synergia%202023-110.jpg){fig-align="center" height=40% width=40%}
+::::: {.smt-hero}
 
-Hi! I'm Steven Turnbull, a data scientist with a wide range of interests. 
-I use this site to post about random things that I find interesting!
+:::: {.smt-hero-text}
+[Data scientist]{.smt-eyebrow}
 
-### Some Things I Have Worked On
-- [PhD Thesis in Education investigating student pathways through STEM](https://researchspace.auckland.ac.nz/handle/2292/54611)
-- [COVID-19 Network Modelling](https://www.pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/)
-- [Network and Geospatial Analysis](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/)
-- [Data Visualisation](https://github.com/sturbull/tidytuesday)
-- Data Infrastructure (ETL/ELT Pipelines, Dashboarding)
+[Dr Steven Turnbull]{.smt-display}
 
-### Example Research Publications
-::: {.border}
-- Emily P.Harvey, Joel A.Trent, Frank Mackenzie, *Steven M. Turnbull* and Dion R.J.O’Neale (2022). Calculating incidence of Influenza-like and COVID-like symptoms from Flutracking participatory survey
-data. MethodsX. [Link](https://doi.org/10.1016/j.mex.2022.101820)
+[I'm a data scientist who loves problem solving and understanding how data flows from operations to decision making.]{.smt-lead}
 
-- *Turnbull, S. M.*, Hobbs, M, Grey, L., Harvey, E., Scarrold, W., & O’Neale, D. (2022). Investigating the transmission risk of infectious disease outbreaks through the Aotearoa Co-incidence Network (ACN): a population-based study. The Lancet Regional Health-Western Pacific, 20, 100351. [Link]((https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/))
-
-- Stephens, J. M., Watson, P. W. S. J., Alansari, M., Lee, G., & *Turnbull, S. M.* (2021). Can Online Academic Integrity Instruction Affect University Students’ Perceptions of and Engagement in Academic Dishonesty? Results From a Natural Experiment in New Zealand. Frontiers in Psychology, 12, 366. [Link](https://pubmed.ncbi.nlm.nih.gov/33679506/)
-
-- *Turnbull, S. M.*, & O’Neale, D. R. (2021). Entropy of Co-Enrolment Networks Reveal Disparities in High School STEM Participation. Frontiers in big Data, 3, 56. [Link](https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2020.599016/full)
-
-- *Turnbull, S. M.*, Meissel, K., Locke, K., & O’Neale, D. R. (2020, April). The Impact of Science Capital on Self-Concept in Science: A Study of University Students in New Zealand. In Frontiers in Education (Vol. 5, p. 27). Frontiers [Link](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2020.00027/full)
-
-- *Turnbull, S. M.*, Locke, K., Vanholsbeeck, F., & O’Neale, D. R. (2019). Bourdieu, networks, and movements: Using the concepts of habitus, field and capital to understand a network analysis of gender differences in undergraduate physics. PloS one, 14(9), e0222357. [Link](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0222357)
+::: {.smt-actions}
+[Read the blog](blog.qmd){.smt-btn}
+[`<i class="bi bi-github"></i>`{=html} GitHub](https://github.com/sturbull/){.smt-btn .smt-btn-outline}
+[`<i class="bi bi-linkedin"></i>`{=html} LinkedIn](https://www.linkedin.com/in/steven-turnbull-122b73156/){.smt-btn .smt-btn-outline}
 :::
+::::
+
+![](static/pictures/headshot.jpg){.smt-avatar fig-alt="Photo of Steven Turnbull"}
+
+:::::
+
+::::: {.smt-section}
+[About]{.smt-h2}
+
+::: {.smt-prose}
+I've developed expertise in automating reproducible analytical pipelines, ensuring that data is and remains trustworthy and valid.
+
+I love learning new skills, and this passion has built a repertoire spanning survey design and administration, geospatial analysis, applications of AI, qualitative analysis. I like stepping out of my comfort zone and picking up new skills to solve the problems I come across.
+
+I started out as a researcher in the sociology of education. My research interests involve understanding how students are channelled down different pathways. I have specific expertise with the sociological theory of Pierre Bourdieu.
+:::
+:::::
+
+::::: {.smt-section}
+[What I work on]{.smt-h2}
+
+::: {.smt-badges}
+[Reproducible analytical pipelines]{.smt-badge}
+[Survey design and administration]{.smt-badge}
+[Geospatial analysis]{.smt-badge}
+[Applications of AI]{.smt-badge}
+[Qualitative analysis]{.smt-badge}
+[Sociology of education]{.smt-badge}
+:::
+
+:::: {.smt-grid}
+::: {.smt-card}
+[PhD thesis in education investigating student pathways through STEM](https://researchspace.auckland.ac.nz/handle/2292/54611){.smt-card-title .stretched-link}
+
+[University of Auckland ResearchSpace]{.smt-muted}
+:::
+
+::: {.smt-card}
+[COVID-19 network modelling](https://www.pmscienceprizes.org.nz/2020-prime-ministers-science-prize-winner/){.smt-card-title .stretched-link}
+
+[2020 Prime Minister's Science Prize]{.smt-muted}
+:::
+
+::: {.smt-card}
+[Network and geospatial analysis](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/){.smt-card-title .stretched-link}
+
+[The Lancet Regional Health: Western Pacific]{.smt-muted}
+:::
+
+::: {.smt-card}
+[Data visualisation](https://github.com/sturbull/tidytuesday){.smt-card-title .stretched-link}
+
+[TidyTuesday on GitHub]{.smt-muted}
+:::
+
+::: {.smt-card}
+[Data infrastructure]{.smt-card-title}
+
+[ETL/ELT pipelines, dashboarding]{.smt-muted}
+:::
+::::
+:::::
+
+::::: {.smt-section}
+:::: {.smt-section-head}
+[Latest posts]{.smt-h2}
+
+[All posts →](blog.qmd){.smt-link}
+::::
+
+::: {#latest-posts}
+:::
+:::::
+
+::::: {.smt-section}
+[Research publications]{.smt-h2}
+
+::: {.smt-pubs}
+- Emily P. Harvey, Joel A. Trent, Frank Mackenzie, **Steven M. Turnbull** and Dion R. J. O'Neale (2022). Calculating incidence of Influenza-like and COVID-like symptoms from Flutracking participatory survey data. *MethodsX*. [Read](https://doi.org/10.1016/j.mex.2022.101820){.smt-badge .smt-badge-link}
+
+- **Turnbull, S. M.**, Hobbs, M., Grey, L., Harvey, E., Scarrold, W., & O'Neale, D. (2022). Investigating the transmission risk of infectious disease outbreaks through the Aotearoa Co-incidence Network (ACN): a population-based study. *The Lancet Regional Health: Western Pacific*, 20, 100351. [Read](https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8733170/){.smt-badge .smt-badge-link}
+
+- Stephens, J. M., Watson, P. W. S. J., Alansari, M., Lee, G., & **Turnbull, S. M.** (2021). Can Online Academic Integrity Instruction Affect University Students' Perceptions of and Engagement in Academic Dishonesty? Results From a Natural Experiment in New Zealand. *Frontiers in Psychology*, 12, 366. [Read](https://pubmed.ncbi.nlm.nih.gov/33679506/){.smt-badge .smt-badge-link}
+
+- **Turnbull, S. M.**, & O'Neale, D. R. (2021). Entropy of Co-Enrolment Networks Reveal Disparities in High School STEM Participation. *Frontiers in Big Data*, 3, 56. [Read](https://www.frontiersin.org/journals/big-data/articles/10.3389/fdata.2020.599016/full){.smt-badge .smt-badge-link}
+
+- **Turnbull, S. M.**, Meissel, K., Locke, K., & O'Neale, D. R. (2020). The Impact of Science Capital on Self-Concept in Science: A Study of University Students in New Zealand. *Frontiers in Education*, 5, 27. [Read](https://www.frontiersin.org/journals/education/articles/10.3389/feduc.2020.00027/full){.smt-badge .smt-badge-link}
+
+- **Turnbull, S. M.**, Locke, K., Vanholsbeeck, F., & O'Neale, D. R. (2019). Bourdieu, networks, and movements: Using the concepts of habitus, field and capital to understand a network analysis of gender differences in undergraduate physics. *PLoS ONE*, 14(9), e0222357. [Read](https://journals.plos.org/plosone/article?id=10.1371/journal.pone.0222357){.smt-badge .smt-badge-link}
+:::
+:::::
+
+::::::

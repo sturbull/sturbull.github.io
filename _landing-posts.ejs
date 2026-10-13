@@ -1,0 +1,20 @@
+```{=html}
+<div class="smt-grid smt-posts">
+<% for (const item of items) { %>
+  <div class="smt-card smt-post" <%= metadataAttrs(item) %>>
+    <% if (item.image) { %>
+    <img class="smt-post-img" src="<%- item.image %>" alt="" loading="lazy">
+    <% } else { %>
+    <div class="smt-post-img smt-post-img-empty"></div>
+    <% } %>
+    <div class="smt-post-body">
+      <span class="smt-muted smt-small"><%= item.date %></span>
+      <a class="smt-card-title stretched-link" href="<%- item.path %>"><%= item.title %></a>
+      <% if (item.description) { %>
+      <span class="smt-muted smt-small"><%= item.description %></span>
+      <% } %>
+    </div>
+  </div>
+<% } %>
+</div>
+```

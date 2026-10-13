@@ -7,8 +7,10 @@ author: 'Steven Turnbull'
 execute: 
   message: false
   warning: false
-editor_options: 
+  freeze: true
+editor_options:
   chunk_output_type: console
+image: "./images/pop-image.png"
 format:
   html:
     code-fold: show

@@ -57,4 +57,11 @@ title-block-banner: false
 :::
 :::::::
 
+::: smt-note
+[<i class="bi bi-stars"></i> AI use]{.smt-note-title}
+
+{{< include _ai-statement.md >}}
+
+[Read the AI use statement <i class="bi bi-arrow-right"></i>](ai-use.qmd){.smt-link}
+:::
 :::::::::

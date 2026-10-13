@@ -1,0 +1,31 @@
+---
+pagetitle: "AI use | Dr Steven Turnbull"
+description: "How Steven Turnbull uses AI on this site, and the site's opt-out from AI scraping."
+page-layout: full
+toc: false
+title-block-banner: false
+---
+
+:::::::: smt-page
+::: smt-page-head
+[AI use]{.smt-display}
+:::
+
+:::: smt-section
+::: smt-prose
+{{< include _ai-statement.md >}}
+:::
+::::
+
+:::: smt-section
+[AI scrapers]{.smt-h2}
+
+::: smt-prose
+I don't consent to the content on this site being used to train AI models.
+
+-   This site's [robots.txt](robots.txt) asks known AI crawlers not to visit, including those run by OpenAI, Anthropic, Google, Meta, Apple, Perplexity and Common Crawl.
+-   Every page carries `noai` and `tdm-reservation` tags, which mark the content as reserved from text and data mining.
+-   Content is licensed under [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/), which does not allow commercial reuse.
+:::
+::::
+::::::::

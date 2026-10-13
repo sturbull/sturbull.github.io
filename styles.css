@@ -291,7 +291,38 @@ a.smt-badge-link:hover {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(min(380px, 100%), 1fr));
   gap: 16px;
-  padding-bottom: 96px;
+  padding-bottom: 32px;
+}
+
+/* AI use note below the index cards */
+.smt-note {
+  margin-bottom: 96px;
+  padding: 24px;
+  border: 1px dashed var(--smt-border);
+  border-radius: 1rem;
+  font-size: 0.925rem;
+  line-height: 1.7;
+  color: var(--smt-muted-fg);
+}
+
+.smt-note p {
+  margin: 0 0 12px;
+}
+
+.smt-note p:last-child {
+  margin-bottom: 0;
+}
+
+.smt-note-title {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-weight: 600;
+  color: var(--smt-fg);
+}
+
+.smt-note-title .bi {
+  color: var(--smt-accent-fg);
 }
 
 .smt-card {

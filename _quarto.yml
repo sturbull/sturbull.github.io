@@ -1,5 +1,7 @@
 project:
   type: website
+  resources:
+    - robots.txt
 
 website:
   title: "Dr Steven Turnbull"
@@ -31,6 +33,8 @@ website:
             href: https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&hl=en
       - text: Visualisations
         href: visualisations.qmd
+      - text: AI use
+        href: ai-use.qmd
     right:
       - icon: github
         href: https://github.com/sturbull/
@@ -38,6 +42,11 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/steven-turnbull-122b73156/
         aria-label: LinkedIn
+  page-footer:
+    left: '© Steven Turnbull · <i class="bi bi-cc-circle"></i> [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
+    right:
+      - text: AI use
+        href: ai-use.qmd
 
 format:
   html:
@@ -47,6 +56,7 @@ format:
       light: [flatly, theme-light.scss]
       dark: [darkly, theme-dark.scss]
     css: styles.css
+    include-in-header: _ai-optout.html
     include-after-body: _glow.html
     toc: true
     title-block-banner: true

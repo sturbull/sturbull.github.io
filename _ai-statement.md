@@ -1,0 +1,1 @@
+While AI is used to support development of my website and streamline mundane tasks, this website is primarily a learning tool for myself. All published content is in my own words. I do not use generative AI to write articles or replace my own unique writing (and on that note, sorry for any spelling mistakes, grammatical errors, or general incoherency).

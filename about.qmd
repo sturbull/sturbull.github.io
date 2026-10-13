@@ -9,9 +9,9 @@ title-block-banner: false
 ::::::::: smt-page
 :::: smt-hero
 ::: smt-hero-text
-[Kia ora]{.smt-eyebrow}!
+[Kia ora!]{.smt-eyebrow}
 
-More about me
+[More about me]{.smt-display}
 :::
 
 ![](static/pictures/headshot.jpg){.smt-avatar fig-alt="Photo of Steven Turnbull"}

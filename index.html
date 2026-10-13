@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,16 +10,10 @@
 
 <title>Dr Steven Turnbull</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="./static/pictures/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-df94f34184cffba1baf13950141eaea0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-291ede992a1c9ceba28254f3294cc871.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-df94f34184cffba1baf13950141eaea0.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-72881c083ed1a420a483494955f3c748.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-db7aab6fe0f95c5047f7ff4dcaeadefb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-72881c083ed1a420a483494955f3c748.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -79,6 +74,9 @@ ul.task-list li input[type="checkbox"] {
     "search-label": "Search"
   }
 }</script>
+<meta name="robots" content="noai, noimageai">
+<meta name="tdm-reservation" content="1">
+<meta name="tdm-policy" content="https://sturbull.github.io/ai-use.html">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -300,6 +298,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./visualisations.html"> 
 <span class="menu-text">Visualisations</span></a>
   </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="./ai-use.html"> 
+<span class="menu-text">AI use</span></a>
+  </li>  
 </ul>
             <ul class="navbar-nav navbar-nav-scroll ms-auto">
   <li class="nav-item compact">
@@ -334,35 +336,40 @@ ul.task-list li input[type="checkbox"] {
 
 <div class="smt-page">
 <div class="smt-intro">
-<p><span class="smt-eyebrow">Data scientist</span></p>
+<p><span class="smt-eyebrow">Data scientist and researcher</span></p>
 <p><span class="smt-display">Dr Steven Turnbull</span></p>
-<p><span class="smt-lead">I’ve always grappled with the role labels, but I’m a data scientist/researcher/generalist who loves problem solving.</span></p>
+<p><span class="smt-lead">I’m a data scientist, researcher, and generalist. I enjoy <span class="smt-mark">learning</span> new things and <span class="smt-mark">solving</span> problems.</span></p>
 </div>
 <div class="smt-cards">
 <div class="smt-card smt-glow">
 <p><span class="smt-card-icon"><i class="bi bi-person"></i></span></p>
 <p><a href="./about.html" class="smt-card-title stretched-link">About</a></p>
-<p><span class="smt-card-desc">Background, PhD and the work I do.</span></p>
+<p><span class="smt-card-desc">Background, PhD, and the work I do.</span></p>
 <p><span class="smt-card-arrow"><i class="bi bi-arrow-right"></i></span></p>
 </div>
 <div class="smt-card smt-glow">
 <p><span class="smt-card-icon"><i class="bi bi-journal-text"></i></span></p>
 <p><a href="./blog.html" class="smt-card-title stretched-link">Blog</a></p>
-<p><span class="smt-card-desc">Write-ups on R, automation, mapping and data.</span></p>
+<p><span class="smt-card-desc">Write-ups on R, data, and anything that interests me!</span></p>
 <p><span class="smt-card-arrow"><i class="bi bi-arrow-right"></i></span></p>
 </div>
 <div class="smt-card smt-glow">
 <p><span class="smt-card-icon"><i class="bi bi-mortarboard"></i></span></p>
 <p><a href="./publications.html" class="smt-card-title stretched-link">Publications</a></p>
-<p><span class="smt-card-desc">Peer-reviewed research, with links to ResearchGate, ORCID and Google Scholar.</span></p>
+<p><span class="smt-card-desc">My research publications.</span></p>
 <p><span class="smt-card-arrow"><i class="bi bi-arrow-right"></i></span></p>
 </div>
 <div class="smt-card smt-glow">
 <p><span class="smt-card-icon"><i class="bi bi-bar-chart"></i></span></p>
 <p><a href="./visualisations.html" class="smt-card-title stretched-link">Visualisations</a></p>
-<p><span class="smt-card-desc">Charts I’ve made for TidyTuesday.</span></p>
+<p><span class="smt-card-desc">Where I try to straddle the line between pretty and useful.</span></p>
 <p><span class="smt-card-arrow"><i class="bi bi-arrow-right"></i></span></p>
 </div>
+</div>
+<div class="smt-note">
+<p><span class="smt-note-title"><i class="bi bi-stars"></i> AI use</span></p>
+<p>While AI is used to support development of my website and streamline mundane tasks, this website is primarily a learning tool for myself. All published content is in my own words. I do not use generative AI to write articles or replace my own unique writing (and on that note, sorry for any spelling mistakes, grammatical errors, or general incoherency).</p>
+<p><a href="./ai-use.html" class="smt-link">Read the AI use statement <i class="bi bi-arrow-right"></i></a></p>
 </div>
 </div>
 
@@ -800,6 +807,25 @@ ul.task-list li input[type="checkbox"] {
   });
   </script>
 </div> <!-- /content -->
+<footer class="footer">
+  <div class="nav-footer">
+    <div class="nav-footer-left">
+<p>© Steven Turnbull · <i class="bi bi-cc-circle"></i> <a href="https://creativecommons.org/licenses/by-nc/4.0/">CC BY-NC 4.0</a></p>
+</div>   
+    <div class="nav-footer-center">
+      &nbsp;
+    </div>
+    <div class="nav-footer-right">
+      <ul class="footer-items list-unstyled">
+    <li class="nav-item">
+    <a class="nav-link" href="./ai-use.html">
+<p>AI use</p>
+</a>
+  </li>  
+</ul>
+    </div>
+  </div>
+</footer>
 
 
 

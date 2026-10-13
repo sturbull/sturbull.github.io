@@ -1,6 +1,6 @@
 [
   {
-    "listing": "/index.html",
+    "listing": "/blog.html",
     "items": [
       "/posts/automation/local_email_summary_ai.html",
       "/posts/automation/automated_emails_from_R.html",
@@ -12,7 +12,7 @@
     ]
   },
   {
-    "listing": "/blog.html",
+    "listing": "/index.html",
     "items": [
       "/posts/automation/local_email_summary_ai.html",
       "/posts/automation/automated_emails_from_R.html",

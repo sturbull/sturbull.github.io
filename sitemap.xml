@@ -1,43 +1,43 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
-    <loc>https://sturbull.github.io/git-conventions.html</loc>
-    <lastmod>2026-10-13T18:03:55.798Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/posts/automation/local_email_summary_ai.html</loc>
-    <lastmod>2026-10-13T18:03:55.800Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/posts/population/visualising_ethnicities_census_2023.html</loc>
-    <lastmod>2026-10-13T18:03:55.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/posts/tennis/FirstSet_Webscraping_and_GeoCoding.html</loc>
-    <lastmod>2026-10-13T18:03:55.803Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/posts/tennis/SecondSet_Drive_Isodistances.html</loc>
-    <lastmod>2026-10-13T18:03:55.831Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/index.html</loc>
-    <lastmod>2026-10-13T18:03:55.798Z</lastmod>
+    <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
+    <lastmod>2026-10-13T17:13:05.794Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/tennis/FourthSet_NiceEasyMaps.html</loc>
-    <lastmod>2026-10-13T18:03:55.804Z</lastmod>
+    <lastmod>2026-10-13T17:13:05.754Z</lastmod>
   </url>
   <url>
-    <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
-    <lastmod>2026-10-13T18:03:55.831Z</lastmod>
+    <loc>https://sturbull.github.io/posts/population/visualising_ethnicities_census_2023.html</loc>
+    <lastmod>2026-10-13T17:55:53.004Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/automation/automated_emails_from_R.html</loc>
-    <lastmod>2026-10-13T18:03:55.800Z</lastmod>
+    <lastmod>2026-10-13T17:13:05.747Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/git-conventions.html</loc>
+    <lastmod>2026-10-13T18:01:43.395Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/blog.html</loc>
-    <lastmod>2026-10-13T18:03:55.786Z</lastmod>
+    <lastmod>2026-10-13T17:13:05.714Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/index.html</loc>
+    <lastmod>2026-10-13T17:39:45.487Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/automation/local_email_summary_ai.html</loc>
+    <lastmod>2026-10-13T17:13:05.751Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/tennis/FirstSet_Webscraping_and_GeoCoding.html</loc>
+    <lastmod>2026-10-13T17:13:05.754Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/tennis/SecondSet_Drive_Isodistances.html</loc>
+    <lastmod>2026-10-13T17:13:05.794Z</lastmod>
   </url>
 </urlset>

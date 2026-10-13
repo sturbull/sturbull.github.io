@@ -24,6 +24,14 @@ $navbar-bg: $smt-bg;
 $navbar-fg: $smt-muted-fg;
 $navbar-hl: $smt-fg;
 
+$dropdown-bg: $smt-bg;
+$dropdown-border-color: $smt-border;
+$dropdown-link-color: $smt-fg;
+$dropdown-link-hover-bg: $smt-muted;
+$dropdown-link-hover-color: $smt-fg;
+$dropdown-link-active-bg: $smt-muted;
+$dropdown-link-active-color: $smt-fg;
+
 /*-- scss:rules --*/
 :root {
   --smt-bg: #{$smt-bg};

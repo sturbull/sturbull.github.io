@@ -1,0 +1,27 @@
+---
+pagetitle: "Visualisations | Dr Steven Turnbull"
+description: "Charts Steven Turnbull has made for TidyTuesday."
+page-layout: full
+toc: false
+title-block-banner: false
+resources:
+  - static/visualisations/*
+listing:
+  id: viz
+  contents: visualisations.yml
+  sort: "date desc"
+  date-format: "D MMMM YYYY"
+  template: _carousel.ejs
+  feed: false
+---
+
+::::: smt-page
+::: smt-page-head
+[Visualisations]{.smt-display}
+
+[Charts I've made for [TidyTuesday](https://github.com/rfordatascience/tidytuesday), the R community's weekly data project. The code for each is in my [TidyTuesday repo](https://github.com/sturbull/tidytuesday).]{.smt-lead}
+:::
+
+::: {#viz}
+:::
+:::::

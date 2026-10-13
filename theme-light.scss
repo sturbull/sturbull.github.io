@@ -7,6 +7,8 @@ $smt-fg: #09090b;
 $smt-muted: #f4f4f5;
 $smt-muted-fg: #71717a;
 $smt-border: #e4e4e7;
+$smt-accent: #d4a017;    // mustard, for glows, fills and borders
+$smt-accent-fg: #8a6500; // darker mustard for text on light backgrounds
 
 $body-bg: $smt-bg;
 $body-color: $smt-fg;
@@ -29,6 +31,10 @@ $navbar-hl: $smt-fg;
   --smt-muted: #{$smt-muted};
   --smt-muted-fg: #{$smt-muted-fg};
   --smt-border: #{$smt-border};
+  --smt-accent: #{$smt-accent};
+  --smt-accent-fg: #{$smt-accent-fg};
+  --smt-accent-soft: #{rgba($smt-accent, 0.1)};
+  --smt-accent-glow: #{rgba($smt-accent, 0.35)};
   --smt-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
   --smt-shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.08);
 }

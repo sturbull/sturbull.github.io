@@ -1,0 +1,17 @@
+<script>
+  // Edge light: tracks the pointer position relative to each .smt-glow element
+  // as --mx/--my, which styles.css uses to place a mustard radial gradient.
+  if (window.matchMedia("(hover: hover)").matches) {
+    let frame = 0;
+    document.addEventListener("pointermove", (e) => {
+      cancelAnimationFrame(frame);
+      frame = requestAnimationFrame(() => {
+        for (const el of document.querySelectorAll(".smt-glow")) {
+          const r = el.getBoundingClientRect();
+          el.style.setProperty("--mx", `${e.clientX - r.left}px`);
+          el.style.setProperty("--my", `${e.clientY - r.top}px`);
+        }
+      });
+    });
+  }
+</script>

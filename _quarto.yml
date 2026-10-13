@@ -14,8 +14,23 @@ website:
         alt: "SMT"
     title: false
     left:
+      - text: About
+        href: about.qmd
       - text: Blog
         href: blog.qmd
+      - text: Publications
+        menu:
+          - text: All publications
+            href: publications.qmd
+          - text: "---"
+          - text: ResearchGate
+            href: https://www.researchgate.net/profile/Steven-Turnbull-2
+          - text: ORCID
+            href: https://orcid.org/0000-0003-3325-4886
+          - text: Google Scholar
+            href: https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&hl=en
+      - text: Visualisations
+        href: visualisations.qmd
     right:
       - icon: github
         href: https://github.com/sturbull/
@@ -32,6 +47,7 @@ format:
       light: [flatly, theme-light.scss]
       dark: [darkly, theme-dark.scss]
     css: styles.css
+    include-after-body: _glow.html
     toc: true
     title-block-banner: true
 

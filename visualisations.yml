@@ -1,0 +1,51 @@
+# Visualisations shown in the carousel on visualisations.qmd, newest first.
+# To add one: save the image in static/visualisations/ (keep it under ~2 MB),
+# then add an entry below. `code` is where the "View code" link goes.
+
+- title: Changes in life expectancy from 1950
+  date: 2023-12-05
+  image: static/visualisations/2023-12-05-life-expectancy.png
+  description: Life expectancy change against a 1950 baseline, with the drops in Cambodia, Rwanda and North Korea annotated.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_12_05_tidy_tuesday.Rmd
+
+- title: R-Ladies chapter events
+  date: 2023-11-21
+  image: static/visualisations/2023-11-21-r-ladies.png
+  description: Cumulative in-person and online R-Ladies events, showing the shift online from 2020.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_11_21_tidy_tuesday.Rmd
+
+- title: Diwali festival sales
+  date: 2023-11-14
+  image: static/visualisations/2023-11-14-diwali-sales.png
+  description: Festival sales data drawn as a radial, flower-shaped tree. A collaboration; credits are on the chart.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_11_14_tidy_tuesday.Rmd
+
+- title: US House election results, 2022
+  date: 2023-11-07
+  image: static/visualisations/2023-11-07-us-house.png
+  description: A treemap per state, laid out as a map, showing Democrat, Republican and other vote shares.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_11_07_tidy_tuesday.Rmd
+
+- title: Horror legends
+  date: 2023-10-31
+  image: static/visualisations/2023-10-31-horror-legends.png
+  description: A word cloud of themes from horror legends reported on by Snopes, shaped like a hooded figure.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_10_31_tidy_tuesday.Rmd
+
+- title: Characteristics of Taylor Swift's albums
+  date: 2023-10-17
+  image: static/visualisations/2023-10-17-taylor-swift.png
+  description: Ridgeline plots comparing nine audio features across ten albums.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_10_17_tidy_tuesday.Rmd
+
+- title: Haunted places in the United States
+  date: 2023-10-10
+  image: static/visualisations/2023-10-10-haunted-places.png
+  description: A density map of reported haunted places, brightest along the East Coast.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_10_10_tidy_tuesday.Rmd
+
+- title: US government grant opportunities
+  date: 2023-10-03
+  image: static/visualisations/2023-10-03-us-grants.png
+  description: Open grants on Grants.gov by posting date and size, with the largest annotated.
+  code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_10_03_tidy_tuesday.Rmd

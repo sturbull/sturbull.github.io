@@ -17,7 +17,7 @@
 - title: Diwali festival sales
   date: 2023-11-14
   image: static/visualisations/2023-11-14-diwali-sales.png
-  description: Festival sales data drawn as a radial, flower-shaped tree. A collaboration; credits are on the chart.
+  description: Festival sales data drawn as a radial, flower-shaped tree. A collaboration with Linden Dale-Gandar.
   code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_11_14_tidy_tuesday.Rmd
 
 - title: US House election results, 2022
@@ -29,7 +29,7 @@
 - title: Horror legends
   date: 2023-10-31
   image: static/visualisations/2023-10-31-horror-legends.png
-  description: A word cloud of themes from horror legends reported on by Snopes, shaped like a hooded figure.
+  description: A word cloud of themes from horror legends reported on by Snopes, shaped like a ghost.
   code: https://github.com/sturbull/tidytuesday/blob/master/code/2023_10_31_tidy_tuesday.Rmd
 
 - title: Characteristics of Taylor Swift's albums

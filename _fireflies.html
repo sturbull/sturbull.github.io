@@ -1,0 +1,29 @@
+<script>
+  // Fireflies: adds a fixed layer of spans behind the page, each with a random
+  // position, size, wander path and glow timing as custom properties that
+  // styles.css animates. Negative delays start each one mid-cycle.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const rand = (min, max) => min + Math.random() * (max - min);
+    const layer = document.createElement("div");
+    layer.className = "smt-fireflies";
+    layer.setAttribute("aria-hidden", "true");
+    const count = window.innerWidth < 720 ? 8 : 14;
+    for (let i = 0; i < count; i++) {
+      const fly = document.createElement("span");
+      const wander = rand(18, 32);
+      fly.style.cssText = [
+        `--x: ${rand(2, 98)}%`,
+        `--y: ${rand(5, 95)}%`,
+        `--size: ${rand(3, 5)}px`,
+        `--dx: ${rand(-12, 12)}vw`,
+        `--dy: ${rand(-10, 10)}vh`,
+        `--wander: ${wander}s`,
+        `--blink: ${rand(4, 9)}s`,
+        `--delay: ${-rand(0, wander)}s`,
+        `--peak: ${rand(0.5, 0.9)}`,
+      ].join(";");
+      layer.append(fly);
+    }
+    document.body.prepend(layer);
+  }
+</script>

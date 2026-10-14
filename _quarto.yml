@@ -56,7 +56,9 @@ format:
     include-in-header:
       - _ai-optout.html
       - text: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">'
-    include-after-body: _glow.html
+    include-after-body:
+      - _glow.html
+      - _fireflies.html
     toc: true
     title-block-banner: true
 

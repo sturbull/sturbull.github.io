@@ -17,6 +17,48 @@
   outline-offset: 2px;
 }
 
+/* Fireflies. _fireflies.html adds the spans and gives each a random position,
+   size, path and timing through custom properties. Only transform and opacity
+   animate, so the browser composites them without repainting. Opaque surfaces
+   (cards, navbar) sit on top and hide them. */
+.smt-fireflies {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.smt-fireflies span {
+  position: absolute;
+  left: var(--x);
+  top: var(--y);
+  width: var(--size);
+  height: var(--size);
+  border-radius: 50%;
+  background: var(--smt-accent);
+  box-shadow: 0 0 8px 2px var(--smt-accent-glow);
+  opacity: 0;
+  animation:
+    smt-firefly-wander var(--wander) ease-in-out var(--delay) infinite,
+    smt-firefly-glow var(--blink) ease-in-out var(--delay) infinite;
+}
+
+@keyframes smt-firefly-wander {
+  33% {
+    transform: translate(var(--dx), calc(var(--dy) * -0.5));
+  }
+  66% {
+    transform: translate(calc(var(--dx) * -0.4), var(--dy));
+  }
+}
+
+@keyframes smt-firefly-glow {
+  50% {
+    opacity: var(--peak);
+  }
+}
+
 main a:not([class]) {
   text-decoration-color: var(--smt-accent);
   text-decoration-thickness: 1.5px;
@@ -549,6 +591,10 @@ a.smt-list-title:hover {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .smt-fireflies {
+    display: none;
+  }
+
   .smt-mark {
     animation: none;
     background-size: 100% 0.3em;

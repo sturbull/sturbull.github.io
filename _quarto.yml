@@ -21,16 +21,7 @@ website:
       - text: Blog
         href: blog.qmd
       - text: Publications
-        menu:
-          - text: All publications
-            href: publications.qmd
-          - text: "---"
-          - text: ResearchGate
-            href: https://www.researchgate.net/profile/Steven-Turnbull-2
-          - text: ORCID
-            href: https://orcid.org/0000-0003-3325-4886
-          - text: Google Scholar
-            href: https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&hl=en
+        href: publications.qmd
       - text: Visualisations
         href: visualisations.qmd
       - text: AI use
@@ -42,6 +33,12 @@ website:
       - icon: linkedin
         href: https://www.linkedin.com/in/steven-turnbull-122b73156/
         aria-label: LinkedIn
+      - text: '<i class="ai ai-google-scholar" role="img" aria-label="Google Scholar" title="Google Scholar"></i>'
+        href: https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&hl=en
+      - text: '<i class="ai ai-orcid" role="img" aria-label="ORCID" title="ORCID"></i>'
+        href: https://orcid.org/0000-0003-3325-4886
+      - text: '<i class="ai ai-researchgate" role="img" aria-label="ResearchGate" title="ResearchGate"></i>'
+        href: https://www.researchgate.net/profile/Steven-Turnbull-2
   page-footer:
     left: '© Steven Turnbull · <i class="bi bi-cc-circle"></i> [CC BY-NC 4.0](https://creativecommons.org/licenses/by-nc/4.0/)'
     right:
@@ -56,7 +53,9 @@ format:
       light: [flatly, theme-light.scss]
       dark: [darkly, theme-dark.scss]
     css: styles.css
-    include-in-header: _ai-optout.html
+    include-in-header:
+      - _ai-optout.html
+      - text: '<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">'
     include-after-body: _glow.html
     toc: true
     title-block-banner: true

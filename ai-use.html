@@ -2,7 +2,7 @@
 <html xmlns="http://www.w3.org/1999/xhtml" lang="en" xml:lang="en"><head>
 
 <meta charset="utf-8">
-<meta name="generator" content="quarto-1.10.19">
+<meta name="generator" content="quarto-1.8.25">
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
@@ -10,16 +10,10 @@
 
 <title>AI use | Dr Steven Turnbull – Dr Steven Turnbull</title>
 <style>
-/* Default styles provided by pandoc.
-** See https://pandoc.org/MANUAL.html#variables-for-html for config info.
-*/
+code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
-div.columns{display: flex; gap: 1.5em;}
-div.column{flex: auto;}
-@media screen {
-div.columns{gap: min(4vw, 1.5em);}
-div.column{overflow-x: auto;}
-}
+div.columns{display: flex; gap: min(4vw, 1.5em);}
+div.column{flex: auto; overflow-x: auto;}
 div.hanging-indent{margin-left: 1.5em; text-indent: -1.5em;}
 ul.task-list{list-style: none;}
 ul.task-list li input[type="checkbox"] {
@@ -40,18 +34,19 @@ ul.task-list li input[type="checkbox"] {
 <link href="./static/pictures/favicon.svg" rel="icon" type="image/svg+xml">
 <script src="site_libs/quarto-html/quarto.js" type="module"></script>
 <script src="site_libs/quarto-html/tabsets/tabsets.js" type="module"></script>
+<script src="site_libs/quarto-html/axe/axe-check.js" type="module"></script>
 <script src="site_libs/quarto-html/popper.min.js"></script>
 <script src="site_libs/quarto-html/tippy.umd.min.js"></script>
 <script src="site_libs/quarto-html/anchor.min.js"></script>
 <link href="site_libs/quarto-html/tippy.css" rel="stylesheet">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-b626d73c4c936ccc3cb08be7d45d1df6.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
-<link href="site_libs/quarto-html/quarto-syntax-highlighting-bf27225e3a48a9273f3daa8f8e829971.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-dark-707d8167ce6003fca903bfe2be84ab7f.css" rel="stylesheet" class="quarto-color-scheme quarto-color-alternate" id="quarto-text-highlighting-styles">
+<link href="site_libs/quarto-html/quarto-syntax-highlighting-7b89279ff1a6dce999919e0e67d4d9ec.css" rel="stylesheet" class="quarto-color-scheme-extra" id="quarto-text-highlighting-styles">
 <script src="site_libs/bootstrap/bootstrap.min.js"></script>
 <link href="site_libs/bootstrap/bootstrap-icons.css" rel="stylesheet">
-<link href="site_libs/bootstrap/bootstrap-d2966c9ef960c1fd44e368b754bafb33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
-<link href="site_libs/bootstrap/bootstrap-dark-1dc0ecd0a5244dd7e2845347427efd09.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
-<link href="site_libs/bootstrap/bootstrap-d2966c9ef960c1fd44e368b754bafb33.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-72881c083ed1a420a483494955f3c748.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme" id="quarto-bootstrap" data-mode="light">
+<link href="site_libs/bootstrap/bootstrap-dark-db7aab6fe0f95c5047f7ff4dcaeadefb.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme quarto-color-alternate" id="quarto-bootstrap" data-mode="dark">
+<link href="site_libs/bootstrap/bootstrap-72881c083ed1a420a483494955f3c748.min.css" rel="stylesheet" append-hash="true" class="quarto-color-scheme-extra" id="quarto-bootstrap" data-mode="light">
 <script id="quarto-search-options" type="application/json">{
   "location": "navbar",
   "copy-button": false,
@@ -80,8 +75,12 @@ ul.task-list li input[type="checkbox"] {
   }
 }</script>
 <meta name="robots" content="noai, noimageai">
+
 <meta name="tdm-reservation" content="1">
+
 <meta name="tdm-policy" content="https://sturbull.github.io/ai-use.html">
+
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/academicons/1.9.4/css/academicons.min.css">
 
 
 <link rel="stylesheet" href="styles.css">
@@ -275,30 +274,10 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="./blog.html"> 
 <span class="menu-text">Blog</span></a>
   </li>  
-  <li class="nav-item dropdown ">
-    <a class="nav-link dropdown-toggle" href="#" id="nav-menu-publications" role="link" data-bs-toggle="dropdown" aria-expanded="false">
- <span class="menu-text">Publications</span>
-    </a>
-    <ul class="dropdown-menu" aria-labelledby="nav-menu-publications">    
-        <li>
-    <a class="dropdown-item" href="./publications.html">
- <span class="dropdown-text">All publications</span></a>
+  <li class="nav-item">
+    <a class="nav-link" href="./publications.html"> 
+<span class="menu-text">Publications</span></a>
   </li>  
-        <li><hr class="dropdown-divider"></li>
-        <li>
-    <a class="dropdown-item" href="https://www.researchgate.net/profile/Steven-Turnbull-2">
- <span class="dropdown-text">ResearchGate</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://orcid.org/0000-0003-3325-4886">
- <span class="dropdown-text">ORCID</span></a>
-  </li>  
-        <li>
-    <a class="dropdown-item" href="https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&amp;hl=en">
- <span class="dropdown-text">Google Scholar</span></a>
-  </li>  
-    </ul>
-  </li>
   <li class="nav-item">
     <a class="nav-link" href="./visualisations.html"> 
 <span class="menu-text">Visualisations</span></a>
@@ -318,6 +297,18 @@ ul.task-list li input[type="checkbox"] {
     <a class="nav-link" href="https://www.linkedin.com/in/steven-turnbull-122b73156/"> <i class="bi bi-linkedin" role="img" aria-label="LinkedIn">
 </i> 
 <span class="menu-text"></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://scholar.google.co.nz/citations?user=PkOOJWIAAAAJ&amp;hl=en"> 
+<span class="menu-text"><i class="ai ai-google-scholar" role="img" aria-label="Google Scholar" title="Google Scholar"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://orcid.org/0000-0003-3325-4886"> 
+<span class="menu-text"><i class="ai ai-orcid" role="img" aria-label="ORCID" title="ORCID"></i></span></a>
+  </li>  
+  <li class="nav-item">
+    <a class="nav-link" href="https://www.researchgate.net/profile/Steven-Turnbull-2"> 
+<span class="menu-text"><i class="ai ai-researchgate" role="img" aria-label="ResearchGate" title="ResearchGate"></i></span></a>
   </li>  
 </ul>
           </div> <!-- /navcollapse -->
@@ -379,6 +370,35 @@ ul.task-list li input[type="checkbox"] {
         }
       });
     });
+  }
+</script>
+<script>
+  // Fireflies: adds a fixed layer of spans behind the page, each with a random
+  // position, size, wander path and glow timing as custom properties that
+  // styles.css animates. Negative delays start each one mid-cycle.
+  if (!window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    const rand = (min, max) => min + Math.random() * (max - min);
+    const layer = document.createElement("div");
+    layer.className = "smt-fireflies";
+    layer.setAttribute("aria-hidden", "true");
+    const count = window.innerWidth < 720 ? 8 : 14;
+    for (let i = 0; i < count; i++) {
+      const fly = document.createElement("span");
+      const wander = rand(18, 32);
+      fly.style.cssText = [
+        `--x: ${rand(2, 98)}%`,
+        `--y: ${rand(5, 95)}%`,
+        `--size: ${rand(3, 5)}px`,
+        `--dx: ${rand(-12, 12)}vw`,
+        `--dy: ${rand(-10, 10)}vh`,
+        `--wander: ${wander}s`,
+        `--blink: ${rand(4, 9)}s`,
+        `--delay: ${-rand(0, wander)}s`,
+        `--peak: ${rand(0.5, 0.9)}`,
+      ].join(";");
+      layer.append(fly);
+    }
+    document.body.prepend(layer);
   }
 </script>
 <script id="quarto-html-after-body" type="application/javascript">

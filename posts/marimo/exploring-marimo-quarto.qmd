@@ -15,7 +15,7 @@ format:
     code-tools: true
 ---
 
-[INSERT BUTTON TO SKIP STRAIGHT TO THE TOOL]
+[Skip to the conjugation tool](#conjugation-tool){.btn .btn-primary}
 
 # Intro
 It's been a long time coming but I've finally decided to take a look at [Marimo](https://marimo.io/). For those of you who have not come across Marimo before, it is a python notebook - kind of similar to juptyer notebooks - but with some great advantages. Notably, it is able to:
@@ -31,8 +31,18 @@ And with that background covered, onto using `marimo` to make something!
 # I'm trying to learn Spanish!
 I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjegations. I'm slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
 
-### Building a Spanish Word Conjegation Tool
-Luckily I'm not the first person to try and learn Spanish, and many great resources already exist. Wiktionary (via https://kaikki.org/) is an excellent source of information on Spanish language, and includes a wealth of data on the conjegations as well as the etymology. I pulled the 1000 most common verbs (drawn from [FrequencyWords by Hermit Dave](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/es/es_50k.txt) to make the example run more smoothly.
+### Conjegations 
+Conjegation has always been a word that I've pretended to understand, and I only really know what it means now it's relevant to my day-to-day. For those who are like me and have no idea, a conjegation is how a verb changes it's spelling to convey additional bits of information. In English, this may be demonstrated by the word "speak". It has various forms, such as spoke, spoken, speaks. In Spanish, conjegations are a whole new ball game, with many more different forms. It's common, and certainly my experience, that conjegations make Spanish quite difficult to learn. 
+
+### Making a Conjegation Tool
+My goal with this current project is to make a tool that makes it easy for me to look up a word and find it's conjegations. My key aims:
+
+- It needs to be accurate. 
+- It needs to be fast. This is one reason I was keen to try out `marimo`
+- It needs to be simple and consistant. 
+
+#### It needs to be accurate
+Luckily I'm not the first person to try and learn Spanish, and many great resources already exist that provide accurate data that I can use as lookups. Wiktionary (via https://kaikki.org/) is an excellent source of information on Spanish language, and includes a wealth of data on the conjegations as well as the etymology. I pulled the 1000 most common verbs (drawn from [FrequencyWords by Hermit Dave](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/es/es_50k.txt)) to make the example run more smoothly.
 
 With this dataset, we can begin exploring the conjegations.
 
@@ -89,7 +99,9 @@ verbs_df = (
 )
 ```
 
-Here's a quick demo showing `marimo` in action:
+#### It needs to be fast
+I seen many demoes of `marimo` and I've always been impressed with how responsive the notebooks are. Here's a quick demo of how quickly it filters our Spanish data:
+
 ```{python .marimo}
 import marimo as mo
 ```
@@ -110,13 +122,16 @@ mo.ui.table(
 )
 ```
 
+The UI and responsiveness is incredibly satisfying.
 
+#### It needs to be simple and consistent
 
-### Types of conjugation
+##### Types of conjugation
 
-A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). The tool below covers the nine simple forms that Wiktionary lists for every verb. The examples use *hablar*, to speak.
+A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). I found [Ella Verbs](https://ellaverbs.com/resources/spanish-verb-tenses-in-english/) a helpful reference here. Spanish has manyyy tenses spread across three moods. To keep it simple and to scaffold my learning appropriately, the tool below will conjugate the nine simple tenses that Wiktionary lists for every verb. 
 
-#### Persons
+##### Persons
+Some quick ground rules on the different types of person (in Spanish) and the meaning.
 
 | Person | Meaning |
 |---|---|
@@ -127,13 +142,11 @@ A Spanish verb changes its ending to show who is doing something (the *person*) 
 | vosotros / vosotras | you, more than one person, informal (mostly used in Spain) |
 | ellos / ellas / ustedes | they, or *you* for more than one person |
 
-*Usted* and *ustedes* mean "you" but take the third-person form, so *usted habla* is "you speak". In Latin America *ustedes* is the normal plural "you" in every situation, and *vosotros* is rarely heard. Parts of Latin America, including Argentina and Uruguay, use *vos* in place of *tú*. The data includes the *vos* forms, but the grid leaves them out.
+Note that *Usted* and *ustedes* mean "you" but take the third-person form, so *usted habla* is "you speak".
 
-The tool's **Tenses and moods** tab explains each of the nine tenses, with an example of when to use it.
+The tool below has a **Tenses and moods** tab that lists the nine tenses by mood, with an example of when to use each one.
 
-Spanish also has compound tenses, built from *haber* and the past participle: *he hablado* (I have spoken), *había hablado* (I had spoken). To make one, look up *haber* in the tool for the tense you need and add the past participle shown under the verb's name.
-
-### Looking up a verb
+##### Looking up a verb
 
 ```{=html}
 <script>
@@ -150,22 +163,21 @@ Spanish also has compound tenses, built from *haber* and the past participle: *h
 </script>
 ```
 
-To look a verb up, it helps to accept any conjugated form as well as the infinitive, so typing *hablo* finds *hablar*. Where two verbs share a form (*fue* is both *ser* and *ir*), the more common verb wins.
+Start typing in the box to filter the 1,000 verbs. The list runs from most to least common. 
 
 ```{python .marimo}
 #| echo: false
-verb_lookup = {}
-for _verb in data["verbs"]:
-    verb_lookup.setdefault(_verb["infinitive"], _verb)
-    for _slots in _verb["conjugations"].values():
-        for _form in _slots.values():
-            verb_lookup.setdefault(_form, _verb)
+# The data is already in frequency order, so the dropdown lists common verbs first.
+verb_lookup = {_verb["infinitive"]: _verb for _verb in data["verbs"]}
 ```
 
 ```{python .marimo}
 #| echo: false
-word = mo.ui.text(
-    value="hablar", placeholder="e.g. hablar or hablo", label="Spanish verb"
+word = mo.ui.dropdown(
+    options=list(verb_lookup),
+    value="hablar",
+    searchable=True,
+    label="Spanish verb",
 )
 tense = mo.ui.dropdown(
     options={labels["en"]: key for key, labels in data["meta"]["tenses"].items()},
@@ -174,7 +186,7 @@ tense = mo.ui.dropdown(
 )
 # The tabs only pick what to show; the content is drawn beneath them by a later
 # cell. Defining them here, apart from anything that reads the verb, means
-# typing a new verb doesn't rebuild them and reset the selected tab.
+# picking a new verb doesn't rebuild them and reset the selected tab.
 tabs = mo.ui.tabs(
     {"Conjugations": "", "Etymology": "", "Tenses and moods": "", "Common verbs": ""}
 )
@@ -182,16 +194,10 @@ tabs = mo.ui.tabs(
 
 ```{python .marimo}
 #| echo: false
-_query = word.value.strip().lower()
-_verb = verb_lookup.get(_query)
+_verb = verb_lookup.get(word.value)
 
 if _verb is None:
-    _output = mo.callout(
-        mo.md(
-            f"**{word.value}** isn't one of the 1,000 verbs. Try the infinitive, e.g. *hablar*."
-        ),
-        kind="warn",
-    )
+    _output = mo.md("Pick a verb above to see its conjugations.")
 else:
     _forms = _verb["conjugations"][tense.value]
     _persons = data["meta"]["persons"]
@@ -210,14 +216,9 @@ else:
             ]
         ]
     )
-    _found_from = (
-        f"*{_query}* is a form of **{_verb['infinitive']}**. "
-        if _query != _verb["infinitive"]
-        else ""
-    )
     _header = mo.md(
         f"### {_verb['infinitive']} {'(irregular)' if _verb['irregular'] else ''}\n\n"
-        f"{_found_from}{_verb['glosses'][0]}. "
+        f"{_verb['glosses'][0]}. "
         f"Gerund *{_verb['gerund']}*, past participle *{_verb['past_participle']}*."
     )
     _output = mo.vstack([tense, _header, _grid])
@@ -225,7 +226,9 @@ else:
 conjugation_view = _output
 ```
 
-Wiktionary also records where each verb came from. For verbs inherited from Latin, the Latin entry lists its descendants across the Romance languages (and the odd English borrowing), which makes a family tree of related words. The **Etymology** tab shows that tree for the verb you type, with its own branch highlighted.
+Wiktionary also records where each verb came from. For verbs inherited from Latin, the Latin entry lists its descendants across the Romance languages (and the odd English borrowing), which makes a family tree of related words. The **Etymology** tab shows that tree for the verb you pick, with its own branch highlighted. This is sometimes incredibly helpful, as some words share pretty close similarities with English and can be a nicer aid to memory. For example hablo (to speak) comes from the latin fabulari - which is the root of the english word fable (a story). While not the same, we can see the similarities. 
+
+Full disclosure, the app below was developed with Claude Code. 
 
 ```{python .marimo}
 #| echo: false
@@ -345,7 +348,7 @@ def etymology_svg(verb):
 
 ```{python .marimo}
 #| echo: false
-_verb = verb_lookup.get(word.value.strip().lower())
+_verb = verb_lookup.get(word.value)
 
 if _verb is None:
     _output = mo.md("")
@@ -377,28 +380,46 @@ etymology_view = _output
 #| echo: false
 tenses_view = mo.md(
     """
-The first five tenses are in the indicative mood, which states facts. The subjunctive mood covers things that are wished for, doubted or not yet real, and usually follows *que*. The imperative gives commands.
+#### Indicative
+
+The indicative mood states facts.
 
 | Tense | Spanish name | Used for | Example |
 |:---|:---|:---|:---|
-| Present | presente | what happens now, habits, general truths | *Hablo* español. (I speak Spanish.) |
-| Preterite | pretérito perfecto simple | actions completed at a definite point in the past | Ayer *hablé* con ella. (I spoke to her yesterday.) |
-| Imperfect | pretérito imperfecto | ongoing or repeated past actions, background description, "used to" | De niño *hablaba* francés. (As a child I used to speak French.) |
-| Future | futuro | what will happen, and guesses about the present | Mañana *hablaré* con él. (I'll speak to him tomorrow.) |
-| Conditional | condicional | what would happen, and polite requests | *Hablaría* más si tuviera tiempo. (I'd speak more if I had time.) |
-| Present subjunctive | presente de subjuntivo | wishes, doubts, feelings and requests about someone else's actions | Quiero que *hables* más despacio. (I want you to speak more slowly.) |
+| Present | presente | current situations, habits, general truths | *Hablo* español. (I speak Spanish.) |
+| Preterite | pretérito indefinido, also called pretérito perfecto simple | actions completed at a specific time | Ayer *hablé* con ella. (I spoke to her yesterday.) |
+| Imperfect | pretérito imperfecto | habits, descriptions and ongoing actions in the past, "used to" | De niño *hablaba* francés. (As a child I used to speak French.) |
+| Future | futuro simple | future actions, and guesses about the present | Mañana *hablaré* con él. (I'll speak to him tomorrow.) |
+| Conditional | condicional simple | hypotheticals, polite requests, wishes | *Hablaría* más si tuviera tiempo. (I'd speak more if I had time.) |
+
+#### Subjunctive
+
+The subjunctive mood covers doubt, wishes, feelings, and things that aren't yet real. It usually follows *que*.
+
+| Tense | Spanish name | Used for | Example |
+|:---|:---|:---|:---|
+| Present subjunctive | presente de subjuntivo | doubt, wishes, feelings and uncertainty about the present or future | Quiero que *hables* más despacio. (I want you to speak more slowly.) |
 | Imperfect subjunctive | pretérito imperfecto de subjuntivo | the same uses in the past, and "if" clauses about unlikely situations | Si *hablara* mejor, viajaría más. (If I spoke better, I'd travel more.) |
-| Imperative | imperativo afirmativo | commands | ¡*Habla* más alto! (Speak up!) |
-| Negative imperative | imperativo negativo | telling someone not to do something, using *no* with the subjunctive form | ¡No *hables*! (Don't speak!) |
+
+#### Imperative
+
+The imperative mood gives commands.
+
+| Tense | Spanish name | Used for | Example |
+|:---|:---|:---|:---|
+| Imperative | imperativo afirmativo | commands and instructions | ¡*Habla* más alto! (Speak up!) |
+| Negative imperative | imperativo negativo | telling someone not to do something, using *no* with the present subjunctive | ¡No *hables*! (Don't speak!) |
 
 There is no *yo* command, so in the imperatives that card shows a dash.
+
+Descriptions adapted from [Ella Verbs](https://ellaverbs.com/resources/spanish-verb-tenses-in-english/).
 """
 )
 ```
 
 ```{python .marimo}
 #| echo: false
-# All 1,000 verbs, a page at a time. Built in its own cell so typing a verb
+# All 1,000 verbs, a page at a time. Built in its own cell so picking a verb
 # doesn't rebuild it and reset the page.
 common_verbs = mo.ui.table(
     verbs_df,
@@ -407,6 +428,8 @@ common_verbs = mo.ui.table(
     show_column_summaries=False,
 )
 ```
+
+[]{#conjugation-tool style="display: block; scroll-margin-top: 1.5rem"}
 
 ```{python .marimo}
 #| echo: false

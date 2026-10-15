@@ -1,0 +1,421 @@
+---
+title: '¡Hola! Learning Spanish with the help of marimo in Quarto'
+date: '2026-10-16'
+categories: ['Python', 'marimo', 'Quarto']
+description: 'Reactive Python cells inside a Quarto blog post using the quarto-marimo extension.'
+author: 'Steven Turnbull'
+engine: marimo
+pyproject: |
+  dependencies = ["pandas"]
+resources:
+  - spanish_verbs.json
+format:
+  html:
+    code-fold: show
+    code-tools: true
+---
+
+[INSERT BUTTON TO SKIP STRAIGHT TO THE TOOL]
+
+# Intro
+It's been a long time coming but I've finally decided to take a look at [Marimo](https://marimo.io/). For those of you who have not come across Marimo before, it is a python notebook - kind of similar to juptyer notebooks - but with some great advantages. Notably, it is able to:
+
+- reactively update when dependencies change. This is great for reproducibility and all-round conveniance - if I change something at the top of my notebook, the rest of the notebook just updates. No more running cells chunk by chunk.
+
+- store files as simple text - unlike juptyer which produces kind of messy JSON. This enables `marimo` to [work well with version control](https://marimo.io/features/user-ml#git-is-much-clearer-in-marimo). This feature is historically what drew me to `quarto`. However, unlike quarto, `marimo` notebooks can also be used as standalone python scripts and serve as imports to other python scripts. 
+
+- give access to built in widgets, which makes managing projects more streamlined and less reliant on imports. 
+
+And with that background covered, onto using `marimo` to make something!
+
+# I'm trying to learn Spanish!
+I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjegations. I'm slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
+
+### Building a Spanish Word Conjegation Tool
+Luckily I'm not the first person to try and learn Spanish, and many great resources already exist. Wiktionary (via https://kaikki.org/) is an excellent source of information on Spanish language, and includes a wealth of data on the conjegations as well as the etymology. I pulled the 1000 most common verbs (drawn from [FrequencyWords by Hermit Dave](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/es/es_50k.txt) to make the example run more smoothly.
+
+With this dataset, we can begin exploring the conjegations.
+
+```{python .marimo}
+#| echo: false
+import json
+import sys
+
+import pandas as pd
+
+VERBS_FILE = "spanish_verbs.json"
+
+# Load the file. In the browser the cells run in Pyodide, which can only reach
+# the file over HTTP, so fetch it from the site serving this page.
+if sys.platform == "emscripten":
+    from js import location
+    from pyodide.http import pyfetch
+
+    _url = f"{location.origin}/posts/marimo/{VERBS_FILE}"
+    _response = await pyfetch(_url)
+    if not _response.ok:
+        raise RuntimeError(f"Couldn't load {_url} (HTTP {_response.status})")
+    data = await _response.json()
+else:
+    data = json.loads((mo.notebook_dir() / VERBS_FILE).read_text(encoding="utf-8"))
+
+# One row per verb; the nested conjugations and etymology stay in `data`.
+verbs_df = (
+    pd.DataFrame(data["verbs"])
+    .assign(meaning=lambda d: d["glosses"].str[0])
+    .loc[
+        :,
+        [
+            "rank",
+            "infinitive",
+            "meaning",
+            "ipa",
+            "irregular",
+            "gerund",
+            "past_participle",
+        ],
+    ]
+    .rename(
+        columns={
+            "rank": "Rank",
+            "infinitive": "Verb",
+            "meaning": "Meaning",
+            "ipa": "Pronunciation",
+            "irregular": "Irregular",
+            "gerund": "Gerund",
+            "past_participle": "Past participle",
+        }
+    )
+)
+```
+
+Here's a quick demo showing `marimo` in action:
+```{python .marimo}
+import marimo as mo
+```
+
+```{python .marimo}
+#| echo: false
+n = mo.ui.slider(1, 20, value=5, label="Number of verbs")
+n
+```
+
+```{python .marimo}
+#| echo: false
+mo.ui.table(
+    verbs_df.head(n.value),
+    selection=None,
+    page_size=n.value,
+    show_column_summaries=False,
+)
+```
+
+
+
+### Types of conjugation
+
+A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). The tool below covers the nine simple forms that Wiktionary lists for every verb. The examples use *hablar*, to speak.
+
+#### Persons
+
+| Person | Meaning |
+|---|---|
+| yo | I |
+| tú | you, one person, informal |
+| él / ella / usted | he, she, or *you* when being formal with one person |
+| nosotros / nosotras | we |
+| vosotros / vosotras | you, more than one person, informal (mostly used in Spain) |
+| ellos / ellas / ustedes | they, or *you* for more than one person |
+
+*Usted* and *ustedes* mean "you" but take the third-person form, so *usted habla* is "you speak". In Latin America *ustedes* is the normal plural "you" in every situation, and *vosotros* is rarely heard. Parts of Latin America, including Argentina and Uruguay, use *vos* in place of *tú*. The data includes the *vos* forms, but the grid leaves them out.
+
+The tool's **Tenses and moods** tab explains each of the nine tenses, with an example of when to use it.
+
+Spanish also has compound tenses, built from *haber* and the past participle: *he hablado* (I have spoken), *había hablado* (I had spoken). To make one, look up *haber* in the tool for the tense you need and add the past participle shown under the verb's name.
+
+### Looking up a verb
+
+```{=html}
+<script>
+  // Quarto opens site search on "f", "s" or "/" unless a form field has focus,
+  // but marimo's inputs sit in a shadow DOM, so Quarto only sees the wrapper
+  // element. Stop key presses in any form field reaching its listener on
+  // document.
+  document.body.addEventListener("keyup", (event) => {
+    const el = event.composedPath()[0];
+    if (el instanceof Element && (el.matches("input, select, textarea") || el.isContentEditable)) {
+      event.stopPropagation();
+    }
+  });
+</script>
+```
+
+To look a verb up, it helps to accept any conjugated form as well as the infinitive, so typing *hablo* finds *hablar*. Where two verbs share a form (*fue* is both *ser* and *ir*), the more common verb wins.
+
+```{python .marimo}
+#| echo: false
+verb_lookup = {}
+for _verb in data["verbs"]:
+    verb_lookup.setdefault(_verb["infinitive"], _verb)
+    for _slots in _verb["conjugations"].values():
+        for _form in _slots.values():
+            verb_lookup.setdefault(_form, _verb)
+```
+
+```{python .marimo}
+#| echo: false
+word = mo.ui.text(
+    value="hablar", placeholder="e.g. hablar or hablo", label="Spanish verb"
+)
+tense = mo.ui.dropdown(
+    options={labels["en"]: key for key, labels in data["meta"]["tenses"].items()},
+    value="Present",
+    label="Tense",
+)
+# The tabs only pick what to show; the content is drawn beneath them by a later
+# cell. Defining them here, apart from anything that reads the verb, means
+# typing a new verb doesn't rebuild them and reset the selected tab.
+tabs = mo.ui.tabs(
+    {"Conjugations": "", "Etymology": "", "Tenses and moods": "", "Common verbs": ""}
+)
+```
+
+```{python .marimo}
+#| echo: false
+_query = word.value.strip().lower()
+_verb = verb_lookup.get(_query)
+
+if _verb is None:
+    _output = mo.callout(
+        mo.md(
+            f"**{word.value}** isn't one of the 1,000 verbs. Try the infinitive, e.g. *hablar*."
+        ),
+        kind="warn",
+    )
+else:
+    _forms = _verb["conjugations"][tense.value]
+    _persons = data["meta"]["persons"]
+
+    def _cell(person):
+        return mo.stat(_forms.get(person, "—"), label=_persons[person], bordered=True)
+
+    # Singular on the left, plural on the right, as in most textbooks.
+    _grid = mo.vstack(
+        [
+            mo.hstack([_cell(singular), _cell(plural)], widths="equal")
+            for singular, plural in [
+                ("yo", "nosotros"),
+                ("tu", "vosotros"),
+                ("el", "ellos"),
+            ]
+        ]
+    )
+    _found_from = (
+        f"*{_query}* is a form of **{_verb['infinitive']}**. "
+        if _query != _verb["infinitive"]
+        else ""
+    )
+    _header = mo.md(
+        f"### {_verb['infinitive']} {'(irregular)' if _verb['irregular'] else ''}\n\n"
+        f"{_found_from}{_verb['glosses'][0]}. "
+        f"Gerund *{_verb['gerund']}*, past participle *{_verb['past_participle']}*."
+    )
+    _output = mo.vstack([tense, _header, _grid])
+
+conjugation_view = _output
+```
+
+Wiktionary also records where each verb came from. For verbs inherited from Latin, the Latin entry lists its descendants across the Romance languages (and the odd English borrowing), which makes a family tree of related words. The **Etymology** tab shows that tree for the verb you type, with its own branch highlighted.
+
+```{python .marimo}
+#| echo: false
+from html import escape
+
+ROW, COL, PAD = 30, 220, 16
+ACCENT = "#3987e5"
+
+
+def etymology_tree(verb):
+    """The verb's Latin cognate tree, or failing that its line of ancestors."""
+    if verb["cognates"]:
+        return verb["cognates"]
+    if not verb["ancestors"]:
+        return None
+    node = {"lang": "Spanish", "code": "es", "word": verb["infinitive"], "children": []}
+    for ancestor in verb["ancestors"]:  # newest first, so build from the verb upwards
+        node["borrowed"] = ancestor["relation"] in ("borrowed", "learned borrowing")
+        node = {**ancestor, "children": [node]}
+    return node
+
+
+def _without_groups(node):
+    # Grouping nodes ("Ibero-Romance") have no word; lift their children up a
+    # level to keep the tree narrow.
+    children = []
+    for child in node.get("children", []):
+        child = _without_groups(child)
+        children.extend(child["children"] if child["word"] is None else [child])
+    return {**node, "children": children}
+
+
+def etymology_svg(verb):
+    tree = _without_groups(etymology_tree(verb))
+    placed = []
+    next_row = 0
+
+    def place(node, depth):
+        nonlocal next_row
+        child_ids = [place(child, depth + 1) for child in node["children"]]
+        if child_ids:
+            row = (placed[child_ids[0]]["row"] + placed[child_ids[-1]]["row"]) / 2
+        else:
+            row, next_row = next_row, next_row + 1
+        is_target = node["code"] == "es" and node["word"] == verb["infinitive"]
+        placed.append(
+            {
+                "node": node,
+                "row": row,
+                "x": PAD + depth * COL,
+                "y": PAD + 20 + row * ROW,
+                "children": child_ids,
+                "target": is_target,
+                "on_path": is_target or any(placed[i]["on_path"] for i in child_ids),
+            }
+        )
+        return len(placed) - 1
+
+    place(tree, 0)
+
+    # Each parent gets one trunk out to a spine, then a branch to each child,
+    # so a borrowed (dashed) branch never runs over a shared trunk.
+    edges = []
+    for p in placed:
+        if not p["children"]:
+            continue
+        spine = p["x"] + COL - 20
+        edges.append((p["on_path"], f"M{p['x']},{p['y']} H{spine}", False))
+        for c in (placed[i] for i in p["children"]):
+            edges.append(
+                (
+                    c["on_path"],
+                    f"M{spine},{p['y']} V{c['y']} H{c['x']}",
+                    c["node"].get("borrowed"),
+                )
+            )
+
+    parts = []
+    # Highlighted edges last, so they sit on top.
+    for on_path, d, borrowed in sorted(edges, key=lambda e: e[0]):
+        stroke = (
+            f'stroke="{ACCENT}" stroke-width="2.5"'
+            if on_path
+            else 'stroke="currentColor" stroke-opacity="0.35" stroke-width="1.5"'
+        )
+        dash = ' stroke-dasharray="5 4"' if borrowed else ""
+        parts.append(f'<path d="{d}" fill="none" {stroke}{dash}/>')
+    for p in placed:
+        n = p["node"]
+        word, lang = escape(n["word"]), escape(n["lang"])
+        tip = f"{lang}: {word}" + (" (borrowed)" if n.get("borrowed") else "")
+        fill = (
+            f'fill="{ACCENT}"'
+            if p["on_path"]
+            else 'fill="currentColor" fill-opacity="0.55"'
+        )
+        parts.append(
+            f'<circle cx="{p["x"]}" cy="{p["y"]}" r="{6 if p["target"] else 4}" {fill}><title>{tip}</title></circle>'
+        )
+        weight = "700" if p["target"] else "400"
+        # Leaves are labelled beside the node; parents above their trunk,
+        # clear of the edges to their children.
+        x, y = (p["x"] + 8, p["y"] - 7) if p["children"] else (p["x"] + 10, p["y"] + 4)
+        parts.append(
+            f'<text x="{x}" y="{y}" font-size="13">'
+            f'<tspan font-weight="{weight}">{word}</tspan>'
+            f'<tspan dx="6" font-size="11" fill-opacity="0.65">{lang}</tspan></text>'
+        )
+    width = max(p["x"] for p in placed) + 260
+    height = PAD * 2 + 20 + (next_row - 1) * ROW + 20
+    return (
+        f'<svg viewBox="0 0 {width} {height}" width="{width}" style="max-width:100%;height:auto;color:var(--bs-body-color, inherit)" '
+        f'fill="currentColor" font-family="inherit" role="img" '
+        f'aria-label="Etymology tree for {escape(verb["infinitive"])}">{"".join(parts)}</svg>'
+    )
+```
+
+```{python .marimo}
+#| echo: false
+_verb = verb_lookup.get(word.value.strip().lower())
+
+if _verb is None:
+    _output = mo.md("")
+elif etymology_tree(_verb) is None:
+    _output = mo.md(f"Wiktionary has no etymology for *{_verb['infinitive']}*.")
+else:
+    _scope = (
+        "Other branches are related words in other languages."
+        if _verb["cognates"]
+        else "Wiktionary lists no Latin descendants for this verb, so this shows its line of ancestors only."
+    )
+    _output = mo.vstack(
+        [
+            mo.md(f"#### Where *{_verb['infinitive']}* comes from"),
+            mo.Html(etymology_svg(_verb)),
+            mo.md(
+                f"The highlighted path leads to *{_verb['infinitive']}*. Solid lines are inherited words, "
+                f"dashed lines are borrowings. {_scope}\n\n"
+                "> " + (_verb["etymology_text"] or "").replace("\n", "\n> ") + "\n\n"
+                "Source: Wiktionary via [Kaikki.org](https://kaikki.org/) (CC BY-SA 4.0)."
+            ),
+        ]
+    )
+
+etymology_view = _output
+```
+
+```{python .marimo}
+#| echo: false
+tenses_view = mo.md(
+    """
+The first five tenses are in the indicative mood, which states facts. The subjunctive mood covers things that are wished for, doubted or not yet real, and usually follows *que*. The imperative gives commands.
+
+| Tense | Spanish name | Used for | Example |
+|:---|:---|:---|:---|
+| Present | presente | what happens now, habits, general truths | *Hablo* español. (I speak Spanish.) |
+| Preterite | pretérito perfecto simple | actions completed at a definite point in the past | Ayer *hablé* con ella. (I spoke to her yesterday.) |
+| Imperfect | pretérito imperfecto | ongoing or repeated past actions, background description, "used to" | De niño *hablaba* francés. (As a child I used to speak French.) |
+| Future | futuro | what will happen, and guesses about the present | Mañana *hablaré* con él. (I'll speak to him tomorrow.) |
+| Conditional | condicional | what would happen, and polite requests | *Hablaría* más si tuviera tiempo. (I'd speak more if I had time.) |
+| Present subjunctive | presente de subjuntivo | wishes, doubts, feelings and requests about someone else's actions | Quiero que *hables* más despacio. (I want you to speak more slowly.) |
+| Imperfect subjunctive | pretérito imperfecto de subjuntivo | the same uses in the past, and "if" clauses about unlikely situations | Si *hablara* mejor, viajaría más. (If I spoke better, I'd travel more.) |
+| Imperative | imperativo afirmativo | commands | ¡*Habla* más alto! (Speak up!) |
+| Negative imperative | imperativo negativo | telling someone not to do something, using *no* with the subjunctive form | ¡No *hables*! (Don't speak!) |
+
+There is no *yo* command, so in the imperatives that card shows a dash.
+"""
+)
+```
+
+```{python .marimo}
+#| echo: false
+# All 1,000 verbs, a page at a time. Built in its own cell so typing a verb
+# doesn't rebuild it and reset the page.
+common_verbs = mo.ui.table(
+    verbs_df,
+    selection=None,
+    page_size=10,
+    show_column_summaries=False,
+)
+```
+
+```{python .marimo}
+#| echo: false
+_views = {
+    "Conjugations": conjugation_view,
+    "Etymology": etymology_view,
+    "Tenses and moods": tenses_view,
+    "Common verbs": common_verbs,
+}
+mo.vstack([word, tabs, _views[tabs.value]])
+```
+

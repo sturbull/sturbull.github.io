@@ -62,7 +62,7 @@ format:
     toc: true
     title-block-banner: true
 
-editor: visual
+editor: source
 
 execute:
   freeze: auto

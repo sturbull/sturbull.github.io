@@ -9,4 +9,4 @@
 ideas.md
 /inputs/
 **/*.quarto_ipynb
-_extensions/marimo-team/marimo/python/quarto_marimo/__pycache__/document.cpython-314.pyc
+__pycache__/

@@ -2,7 +2,7 @@
 title: '¡Hola! Learning Spanish with the help of marimo in Quarto'
 date: '2026-10-16'
 categories: ['Python', 'marimo', 'Quarto', 'AI-use']
-description: 'In this post I explore how marimo can help me build an accurate, fast and simple tool to help me learn Spanish conjegations.'
+description: 'In this post I explore how marimo can help me build an accurate, fast and simple tool to help me learn Spanish conjugations.'
 author: 'Steven Turnbull'
 engine: marimo
 image: "./image.png"
@@ -27,32 +27,32 @@ It's been a long time coming but I've finally decided to take a look at [marimo]
 
 - give access to built in widgets, which makes managing projects more streamlined and less reliant on imports. 
 
-In today's post, I play around with the capabilities of `marimo` by loading in some data on Spanish verbs and conjegations. Since my website is built using `quarto` (and I use `quarto` in my day-to-day), I've installed the `marimo-quarto` extension. This can be done by running `quarto install extension marimo-team/quarto-marimo`. For more information about seting things up, the [official marimo docs](https://docs.marimo.io/guides/exporting/quarto/) are helpful.
+In today's post, I play around with the capabilities of `marimo` by loading in some data on Spanish verbs and conjugations. Since my website is built using `quarto` (and I use `quarto` in my day-to-day), I've installed the `marimo-quarto` extension. This can be done by running `quarto install extension marimo-team/quarto-marimo`. For more information about seting things up, the [official marimo docs](https://docs.marimo.io/guides/exporting/quarto/) are helpful.
 
 And with that background covered, onto using `marimo` to make something!
 
 ::: {.callout}
-Claude code was used in the development of the final conjegation tool, to enable me to very quickly explore the capabilities of `marimo` and make actually useful that a I probably couldn't at this stage. All writing is in my own words.
+Claude code was used in the development of the final conjugation tool, to enable me to very quickly explore the capabilities of `marimo` and make actually useful that a I probably couldn't at this stage. All writing is in my own words.
 :::
 
 
 # I'm trying to learn Spanish!
-I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjegations. I'm (very) slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
+I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjugations. I'm (very) slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
 
-### Conjegations 
-Conjegation has always been a word that I've pretended to understand, and I only really know what it means now it's relevant to my day-to-day. For those who are like me and have no idea, a conjegation is how a verb changes it's spelling to convey additional bits of information. In English, this may be demonstrated by the word "speak". It has various forms, such as spoke, spoken, speaks. In Spanish, conjegations are a whole new ball game, with many more different forms. It's common, and certainly my experience, that conjegations make Spanish quite difficult to learn. 
+### Conjugations 
+Conjugation has always been a word that I've pretended to understand, and I only really know what it means now it's relevant to my day-to-day. For those who are like me and have no idea, a conjugation is how a verb changes it's spelling to convey additional bits of information. In English, this may be demonstrated by the word "speak". It has various forms, such as spoke, spoken, speaks. In Spanish, conjugations are a whole new ball game, with many more different forms. It's common, and certainly my experience, that conjugations make Spanish quite difficult to learn. 
 
-### Making a Conjegation Tool
-My goal with this current project is to make a tool that makes it easy for me to look up a word and find it's conjegations. My key aims:
+### Making a Conjugation Tool
+My goal with this current project is to make a tool that makes it easy for me to look up a word and find it's conjugations. My key aims:
 
 - It needs to be accurate. 
 - It needs to be fast. This is one reason I was keen to try out `marimo`
 - It needs to be simple and consistant. 
 
 #### It needs to be accurate
-Luckily I'm not the first person to try and learn Spanish, and many great resources already exist that provide accurate data that I can use as lookups. Wiktionary (via https://kaikki.org/) is an excellent source of information on Spanish language, and includes a wealth of data on the conjegations as well as the etymology. I pulled the 1000 most common verbs (drawn from [FrequencyWords by Hermit Dave](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/es/es_50k.txt)) to make the example run more smoothly.
+Luckily I'm not the first person to try and learn Spanish, and many great resources already exist that provide accurate data that I can use as lookups. Wiktionary (via https://kaikki.org/) is an excellent source of information on Spanish language, and includes a wealth of data on the conjugations as well as the etymology. I pulled the 1000 most common verbs (drawn from [FrequencyWords by Hermit Dave](https://github.com/hermitdave/FrequencyWords/blob/master/content/2018/es/es_50k.txt)) to make the example run more smoothly.
 
-With this dataset, we can begin exploring the conjegations.
+With this dataset, we can begin exploring the conjugations.
 
 ```{python .marimo}
 #| echo: false
@@ -134,9 +134,9 @@ The UI and responsiveness is incredibly satisfying.
 
 #### It needs to be simple and consistent
 
-Any tool I build needs to be simple, because conjegations in Spanish are so complex - things are hard enough already. 
+Any tool I build needs to be simple, because conjugations in Spanish are so complex - things are hard enough already. 
 
-##### Types of conjugation
+##### Types of Conjugation
 A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). I found the [Spanish Language Tutor](https://youtu.be/FRV9fvWjMHA?si=AljiKHJo_7orl4f8) and [Ella Verbs](https://ellaverbs.com/resources/spanish-verb-tenses-in-english/)  helpful references here. Spanish has manyyy tenses spread across three moods (indicative, subjunctive, imperitive). To keep it simple and to scaffold my learning appropriately, the tool below will conjugate the nine simple tenses that [Wiktionary](https://en.wiktionary.org/wiki/Appendix:Spanish_verbs#) lists for every verb. Specificically I adapt a method from the [Spanish Language Tutor](https://youtu.be/FRV9fvWjMHA?si=AljiKHJo_7orl4f8) where the singular and plural versions are split into a 2 X 3 grid - this approach makes it easier to remember how things line up. 
 
 | | Singular | Plural |
@@ -411,7 +411,7 @@ common_verbs = mo.ui.table(
 )
 ```
 
-# The Conjegation Tool
+# The Conjugation Tool
 []{#conjugation-tool style="display: block; scroll-margin-top: 1.5rem"}
 
 ```{python .marimo}

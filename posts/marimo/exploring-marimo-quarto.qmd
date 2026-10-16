@@ -32,7 +32,7 @@ In today's post, I play around with the capabilities of `marimo` by loading in s
 And with that background covered, onto using `marimo` to make something!
 
 ::: {.callout}
-Claude code was used in the development of the final conjugation tool, to enable me to very quickly explore the capabilities of `marimo` and make something actually useful that I probably couldn't at this stage. All writing is in my own words.
+Claude code was used in the development of the final conjugation tool, to enable me to very quickly explore the capabilities of `marimo`. All writing is in my own words.
 :::
 
 

@@ -65,6 +65,19 @@ main a:not([class]) {
   text-underline-offset: 3px;
 }
 
+/* Markdown tables inside marimo islands. marimo's zebra and hover rows use its
+   own light palette, which Quarto's dark toggle doesn't switch, so restyle them
+   like Bootstrap's .table. The id outranks marimo's .marimo .markdown selectors. */
+#quarto-document-content .marimo .markdown table tbody tr {
+  background: transparent;
+}
+
+#quarto-document-content .marimo .markdown table :is(th, td) {
+  padding: 0.5rem;
+  border-bottom: 1px solid var(--smt-border);
+  text-align: start;
+}
+
 .smt-page {
   max-width: 960px;
   margin: 0 auto;

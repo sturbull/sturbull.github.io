@@ -1,10 +1,11 @@
 ---
 title: '¡Hola! Learning Spanish with the help of marimo in Quarto'
 date: '2026-10-16'
-categories: ['Python', 'marimo', 'Quarto']
-description: 'Reactive Python cells inside a Quarto blog post using the quarto-marimo extension.'
+categories: ['Python', 'marimo', 'Quarto', 'AI-use']
+description: 'In this post I explore how marimo can help me build an accurate, fast and simple tool to help me learn Spanish conjegations.'
 author: 'Steven Turnbull'
 engine: marimo
+image: "./image.png"
 pyproject: |
   dependencies = ["pandas"]
 resources:
@@ -18,18 +19,25 @@ format:
 [Skip to the conjugation tool](#conjugation-tool){.btn .btn-primary}
 
 # Intro
-It's been a long time coming but I've finally decided to take a look at [Marimo](https://marimo.io/). For those of you who have not come across Marimo before, it is a python notebook - kind of similar to juptyer notebooks - but with some great advantages. Notably, it is able to:
+It's been a long time coming but I've finally decided to take a look at [marimo](https://marimo.io/). For those of you who have not come across `marimo` before, it is a `python` notebook - kind of similar to `juptyer` notebooks - but with some great advantages. Notably, it is able to:
 
 - reactively update when dependencies change. This is great for reproducibility and all-round conveniance - if I change something at the top of my notebook, the rest of the notebook just updates. No more running cells chunk by chunk.
 
-- store files as simple text - unlike juptyer which produces kind of messy JSON. This enables `marimo` to [work well with version control](https://marimo.io/features/user-ml#git-is-much-clearer-in-marimo). This feature is historically what drew me to `quarto`. However, unlike quarto, `marimo` notebooks can also be used as standalone python scripts and serve as imports to other python scripts. 
+- store files as simple text - unlike `juptyer` which produces kind of messy JSON. This enables `marimo` to [work well with version control](https://marimo.io/features/user-ml#git-is-much-clearer-in-marimo). This feature is historically what drew me to `quarto`. However, unlike `quarto`, `marimo` notebooks can also be used as standalone `python` scripts and serve as imports to other `python` scripts. 
 
 - give access to built in widgets, which makes managing projects more streamlined and less reliant on imports. 
 
+In today's post, I play around with the capabilities of `marimo` by loading in some data on Spanish verbs and conjegations. Since my website is built using `quarto` (and I use `quarto` in my day-to-day), I've installed the `marimo-quarto` extension. This can be done by running `quarto install extension marimo-team/quarto-marimo`. For more information about seting things up, the [official marimo docs](https://docs.marimo.io/guides/exporting/quarto/) are helpful.
+
 And with that background covered, onto using `marimo` to make something!
 
+::: {.callout}
+Claude code was used in the development of the final conjegation tool, to enable me to very quickly explore the capabilities of `marimo` and make actually useful that a I probably couldn't at this stage. All writing is in my own words.
+:::
+
+
 # I'm trying to learn Spanish!
-I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjegations. I'm slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
+I've been trying to learn spanish for a long time, and have only recently pushed myself to start lessons. My lessons have lots of homework that require me to write sentences about my day, and specifically understand word conjegations. I'm (very) slowly getting the hang of it, but any tool that I can use to quickly look things up would be useful. I'll try and make one here, using marimo. 
 
 ### Conjegations 
 Conjegation has always been a word that I've pretended to understand, and I only really know what it means now it's relevant to my day-to-day. For those who are like me and have no idea, a conjegation is how a verb changes it's spelling to convey additional bits of information. In English, this may be demonstrated by the word "speak". It has various forms, such as spoke, spoken, speaks. In Spanish, conjegations are a whole new ball game, with many more different forms. It's common, and certainly my experience, that conjegations make Spanish quite difficult to learn. 
@@ -126,27 +134,20 @@ The UI and responsiveness is incredibly satisfying.
 
 #### It needs to be simple and consistent
 
+Any tool I build needs to be simple, because conjegations in Spanish are so complex - things are hard enough already. 
+
 ##### Types of conjugation
+A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). I found the [Spanish Language Tutor](https://youtu.be/FRV9fvWjMHA?si=AljiKHJo_7orl4f8) and [Ella Verbs](https://ellaverbs.com/resources/spanish-verb-tenses-in-english/)  helpful references here. Spanish has manyyy tenses spread across three moods (indicative, subjunctive, imperitive). To keep it simple and to scaffold my learning appropriately, the tool below will conjugate the nine simple tenses that [Wiktionary](https://en.wiktionary.org/wiki/Appendix:Spanish_verbs#) lists for every verb. Specificically I adapt a method from the [Spanish Language Tutor](https://youtu.be/FRV9fvWjMHA?si=AljiKHJo_7orl4f8) where the singular and plural versions are split into a 2 X 3 grid - this approach makes it easier to remember how things line up. 
 
-A Spanish verb changes its ending to show who is doing something (the *person*) and when or how it happens (the *tense* and *mood*). I found [Ella Verbs](https://ellaverbs.com/resources/spanish-verb-tenses-in-english/) a helpful reference here. Spanish has manyyy tenses spread across three moods. To keep it simple and to scaffold my learning appropriately, the tool below will conjugate the nine simple tenses that Wiktionary lists for every verb. 
-
-##### Persons
-Some quick ground rules on the different types of person (in Spanish) and the meaning.
-
-| Person | Meaning |
-|---|---|
-| yo | I |
-| tú | you, one person, informal |
-| él / ella / usted | he, she, or *you* when being formal with one person |
-| nosotros / nosotras | we |
-| vosotros / vosotras | you, more than one person, informal (mostly used in Spain) |
-| ellos / ellas / ustedes | they, or *you* for more than one person |
+| | Singular | Plural |
+|---|---|---|
+| **1st person** | yo (I) | nosotros / nosotras (we) |
+| **2nd person** | tú (you, one person, informal) | vosotros / vosotras (you, more than one person, informal; mostly used in Spain) |
+| **3rd person** | él / ella / usted (he, she, or *you* when being formal with one person) | ellos / ellas / ustedes (they, or *you* for more than one person) |
 
 Note that *Usted* and *ustedes* mean "you" but take the third-person form, so *usted habla* is "you speak".
 
-The tool below has a **Tenses and moods** tab that lists the nine tenses by mood, with an example of when to use each one.
-
-##### Looking up a verb
+While the grid itself is simple, there are *9* different versions that it can take depending on the tense and mood of the sentence. Luckily, with `marimo`, we have the capacbilities to quickly switch between the 9 different version. The tool below also has a **Tenses and moods** tab that lists the nine tenses by mood, with an example of when to use each one.
 
 ```{=html}
 <script>
@@ -162,8 +163,6 @@ The tool below has a **Tenses and moods** tab that lists the nine tenses by mood
   });
 </script>
 ```
-
-Start typing in the box to filter the 1,000 verbs. The list runs from most to least common. 
 
 ```{python .marimo}
 #| echo: false
@@ -226,9 +225,10 @@ else:
 conjugation_view = _output
 ```
 
+##### Etymology
 Wiktionary also records where each verb came from. For verbs inherited from Latin, the Latin entry lists its descendants across the Romance languages (and the odd English borrowing), which makes a family tree of related words. The **Etymology** tab shows that tree for the verb you pick, with its own branch highlighted. This is sometimes incredibly helpful, as some words share pretty close similarities with English and can be a nicer aid to memory. For example hablo (to speak) comes from the latin fabulari - which is the root of the english word fable (a story). While not the same, we can see the similarities. 
 
-Full disclosure, the app below was developed with Claude Code. 
+
 
 ```{python .marimo}
 #| echo: false
@@ -380,10 +380,6 @@ etymology_view = _output
 #| echo: false
 tenses_view = mo.md(
     """
-#### Indicative
-
-The indicative mood states facts.
-
 | Tense | Spanish name | Used for | Example |
 |:---|:---|:---|:---|
 | Present | presente | current situations, habits, general truths | *Hablo* español. (I speak Spanish.) |
@@ -391,22 +387,8 @@ The indicative mood states facts.
 | Imperfect | pretérito imperfecto | habits, descriptions and ongoing actions in the past, "used to" | De niño *hablaba* francés. (As a child I used to speak French.) |
 | Future | futuro simple | future actions, and guesses about the present | Mañana *hablaré* con él. (I'll speak to him tomorrow.) |
 | Conditional | condicional simple | hypotheticals, polite requests, wishes | *Hablaría* más si tuviera tiempo. (I'd speak more if I had time.) |
-
-#### Subjunctive
-
-The subjunctive mood covers doubt, wishes, feelings, and things that aren't yet real. It usually follows *que*.
-
-| Tense | Spanish name | Used for | Example |
-|:---|:---|:---|:---|
 | Present subjunctive | presente de subjuntivo | doubt, wishes, feelings and uncertainty about the present or future | Quiero que *hables* más despacio. (I want you to speak more slowly.) |
 | Imperfect subjunctive | pretérito imperfecto de subjuntivo | the same uses in the past, and "if" clauses about unlikely situations | Si *hablara* mejor, viajaría más. (If I spoke better, I'd travel more.) |
-
-#### Imperative
-
-The imperative mood gives commands.
-
-| Tense | Spanish name | Used for | Example |
-|:---|:---|:---|:---|
 | Imperative | imperativo afirmativo | commands and instructions | ¡*Habla* más alto! (Speak up!) |
 | Negative imperative | imperativo negativo | telling someone not to do something, using *no* with the present subjunctive | ¡No *hables*! (Don't speak!) |
 
@@ -429,6 +411,7 @@ common_verbs = mo.ui.table(
 )
 ```
 
+# The Conjegation Tool
 []{#conjugation-tool style="display: block; scroll-margin-top: 1.5rem"}
 
 ```{python .marimo}
@@ -441,4 +424,3 @@ _views = {
 }
 mo.vstack([word, tabs, _views[tabs.value]])
 ```
-

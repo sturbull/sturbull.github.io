@@ -58,7 +58,7 @@ title-block-banner: false
 :::::::
 
 ::: smt-note
-[<i class="bi bi-stars"></i> AI use]{.smt-note-title}
+[AI use]{.smt-note-title}
 
 {{< include _ai-statement.md >}}
 

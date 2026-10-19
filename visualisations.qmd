@@ -1,5 +1,5 @@
 ---
-pagetitle: "Visualisations | Dr Steven Turnbull"
+pagetitle: "Visualisations | Steven Turnbull, PhD"
 description: "Charts Steven Turnbull has made for TidyTuesday."
 page-layout: full
 toc: false

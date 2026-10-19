@@ -1,5 +1,5 @@
 ---
-pagetitle: "AI use | Dr Steven Turnbull"
+pagetitle: "AI use | Steven Turnbull, PhD"
 description: "How Steven Turnbull uses AI on this site, and the site's opt-out from AI scraping."
 page-layout: full
 toc: false

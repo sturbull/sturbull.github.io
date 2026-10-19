@@ -1,5 +1,5 @@
 ---
-pagetitle: "About | Dr Steven Turnbull"
+pagetitle: "About | Steven Turnbull, PhD"
 description: "About Steven Turnbull, a data scientist and researcher from New Zealand."
 page-layout: full
 toc: false

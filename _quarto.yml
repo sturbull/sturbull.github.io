@@ -4,7 +4,7 @@ project:
     - robots.txt
 
 website:
-  title: "Dr Steven Turnbull"
+  title: "Steven Turnbull, PhD"
   favicon: static/pictures/favicon.svg
   navbar:
     logo:

@@ -1,5 +1,5 @@
 ---
-pagetitle: "Publications | Dr Steven Turnbull"
+pagetitle: "Publications | Steven Turnbull, PhD"
 description: "Research publications by Steven Turnbull."
 page-layout: full
 toc: false

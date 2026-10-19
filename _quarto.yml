@@ -24,8 +24,6 @@ website:
         href: publications.qmd
       - text: Visualisations
         href: visualisations.qmd
-      - text: AI use
-        href: ai-use.qmd
     right:
       - icon: github
         href: https://github.com/sturbull/

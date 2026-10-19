@@ -1,5 +1,5 @@
 ---
-pagetitle: "Dr Steven Turnbull"
+pagetitle: "Steven Turnbull, PhD"
 description: "Welcome! I'm a data scientist and researcher from New Zealand."
 page-layout: full
 toc: false
@@ -10,7 +10,7 @@ title-block-banner: false
 ::: smt-intro
 [Data scientist and researcher]{.smt-eyebrow}
 
-[Dr Steven Turnbull]{.smt-display}
+[Steven Turnbull, PhD]{.smt-display}
 
 [I'm a data scientist, researcher, and generalist. I enjoy [learning]{.smt-mark} new things and [solving]{.smt-mark} problems.]{.smt-lead}
 :::

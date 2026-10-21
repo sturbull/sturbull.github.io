@@ -2,7 +2,7 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <url>
     <loc>https://sturbull.github.io/visualisations.html</loc>
-    <lastmod>2026-10-19T23:10:07.127Z</lastmod>
+    <lastmod>2026-10-21T02:25:45.604Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/tennis/ThirdSet_Point_Density_Mapping.html</loc>
@@ -17,32 +17,36 @@
     <lastmod>2026-10-13T17:55:53.004Z</lastmod>
   </url>
   <url>
-    <loc>https://sturbull.github.io/posts/automation/local_email_summary_ai.html</loc>
-    <lastmod>2026-10-13T17:13:05.751Z</lastmod>
+    <loc>https://sturbull.github.io/posts/marimo/exploring-marimo-plotnine.html</loc>
+    <lastmod>2026-10-21T02:26:34.761Z</lastmod>
   </url>
   <url>
-    <loc>https://sturbull.github.io/index.html</loc>
-    <lastmod>2026-10-19T22:43:17.700Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/blog.html</loc>
-    <lastmod>2026-10-13T18:12:54.767Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/about.html</loc>
-    <lastmod>2026-10-19T23:09:33.660Z</lastmod>
-  </url>
-  <url>
-    <loc>https://sturbull.github.io/ai-use.html</loc>
-    <lastmod>2026-10-19T23:09:34.023Z</lastmod>
+    <loc>https://sturbull.github.io/posts/automation/automated_emails_from_R.html</loc>
+    <lastmod>2026-10-13T17:13:05.747Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/git-conventions.html</loc>
     <lastmod>2026-10-13T18:11:59.895Z</lastmod>
   </url>
   <url>
-    <loc>https://sturbull.github.io/posts/automation/automated_emails_from_R.html</loc>
-    <lastmod>2026-10-13T17:13:05.747Z</lastmod>
+    <loc>https://sturbull.github.io/ai-use.html</loc>
+    <lastmod>2026-10-19T23:09:34.023Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/about.html</loc>
+    <lastmod>2026-10-19T23:09:33.660Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/blog.html</loc>
+    <lastmod>2026-10-13T18:12:54.767Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/index.html</loc>
+    <lastmod>2026-10-19T22:43:17.700Z</lastmod>
+  </url>
+  <url>
+    <loc>https://sturbull.github.io/posts/automation/local_email_summary_ai.html</loc>
+    <lastmod>2026-10-13T17:13:05.751Z</lastmod>
   </url>
   <url>
     <loc>https://sturbull.github.io/posts/marimo/exploring-marimo-quarto.html</loc>

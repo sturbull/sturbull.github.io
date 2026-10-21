@@ -6,6 +6,7 @@
   {
     "listing": "/blog.html",
     "items": [
+      "/posts/marimo/exploring-marimo-plotnine.html",
       "/posts/marimo/exploring-marimo-quarto.html",
       "/posts/automation/local_email_summary_ai.html",
       "/posts/automation/automated_emails_from_R.html",

@@ -19,7 +19,7 @@ listing:
 ::: smt-page-head
 [Visualisations]{.smt-display}
 
-[Charts I've made for [TidyTuesday](https://github.com/rfordatascience/tidytuesday), the R community's weekly data project. The code for each is in my [TidyTuesday repo](https://github.com/sturbull/tidytuesday).]{.smt-lead}
+[Charts I've made for various things, such as [TidyTuesday](https://github.com/rfordatascience/tidytuesday), the R community's weekly data project. The code can be found across my [TidyTuesday](https://github.com/sturbull/tidytuesday) and [PydyTuesday](https://github.com/sturbull/sturbull-pydytuesday) repos.]{.smt-lead}
 :::
 
 ::: {#viz}

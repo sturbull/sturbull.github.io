@@ -2,6 +2,12 @@
 # To add one: save the image in static/visualisations/ (keep it under ~2 MB),
 # then add an entry below. `code` is where the "View code" link goes.
 
+- title: Salary Change by Field of Study
+  date: 2026-10-20
+  image: static/visualisations/2026-10-20-plot.png
+  description: Exploring marimo, polars, and plotnine to show changes in salary after 4 years by field of study.
+  code: https://github.com/sturbull/sturbull-pydytuesday/blob/main/code/2026/2026-10-20/tt_2026-10-20.py
+
 - title: Changes in life expectancy from 1950
   date: 2023-12-05
   image: static/visualisations/2023-12-05-life-expectancy.png

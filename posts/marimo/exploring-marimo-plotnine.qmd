@@ -1,0 +1,261 @@
+---
+title: 'Exploring visualisations in marimo and python'
+date: '2026-10-21'
+categories: ['Python', 'marimo', 'plotnine']
+description: 'In this post I explore how to create visualisations using polars, plotnine and marimo.'
+author: 'Steven Turnbull'
+engine: marimo
+image: "../../static/visualisations/2026-10-20-plot.png"
+pyproject: |
+  dependencies = ["polars", "pyarrow", "plotnine", "adjustText"]
+format:
+  html:
+    code-fold: show
+    code-tools: true
+---
+
+In an effort to improve my `python` skills, I've been exploring `marimo` as a notebook for data analysis. There are a lot of advantages to this approach, which you can read about [here](exploring-marimo-quarto.qmd).
+My day-to-day as a data scientist often involves me accessing a data set, quickly exploring it, and cleaning it ready for analysis.
+
+As an `R` `tidyverse` native, the idea of picking up new syntax never felt appealing - I *love* the `tidyverse`. With that being said, it turns out the jump from `tidyverse` to `python` really isn't that steep anymore.
+In this post today I'll talk through how `polars` makes it surprisingly easy for someone familiar with the `tidyverse` to jump into analysis using `python`.
+I'll then go on to show how `plotnine` can be used to make visualisations using the same syntax as `ggplot2`.
+
+# Import packages
+```{python .marimo}
+#| echo: true
+import marimo as mo
+import plotnine as pn
+import polars as pl
+from mizani.labels import label_comma
+```
+
+## Load the data
+
+The data comes from [TidyTuesday 2026-10-20](https://github.com/rfordatascience/tidytuesday/tree/main/data/2026/2026-10-20).
+
+```{python .marimo}
+#| echo: false
+import io
+import sys
+
+SALARIES_URL = (
+    "https://raw.githubusercontent.com/rfordatascience/tidytuesday/main/"
+    "data/2026/2026-10-20/ai_salary_majors.csv"
+)
+
+# In the browser the cells run in Pyodide, which can only reach the file
+# through the browser's fetch.
+if sys.platform == "emscripten":
+    from pyodide.http import pyfetch
+
+    _response = await pyfetch(SALARIES_URL)
+    if not _response.ok:
+        raise RuntimeError(f"Couldn't load {SALARIES_URL} (HTTP {_response.status})")
+    salaries_source = io.BytesIO(await _response.bytes())
+else:
+    salaries_source = SALARIES_URL
+```
+
+Here we can get a quick glimpse of the data. Note how with `polars` we read in the data and set null value strings using `null_values = "NA"` - this is equivalent to `readr::read_csv(..., na = "NA")`, or `read.csv(..., na.strings = "NA")` in base `R`. 
+
+```{python .marimo}
+#| echo: true
+# TidyTuesday CSVs are written from R, so missing values appear as "NA".
+# Polars infers types from the first 100 rows by default; scan the whole file instead.
+salaries = pl.read_csv(salaries_source, null_values="NA", infer_schema_length=None)
+salaries
+```
+
+Having looked at the data briefly, I can see there's info on the median starting salary and the median salary after 4 years. It be interesting to see what the difference is between these for each field of study. With that goal in mind, I will need to clean and wrangle the data accordingly.
+
+## Wrangle
+This dataset is pretty straight forward, but there's still a few things I'd like to do to get things cleaned and ready to plot. Here's what I'd like to do:
+
+- cast `median_salary_4yr` as `Int64`, so we can use it in a calculation.
+- drop any rows with null `median_salary_4yr`.
+- filter out any `median_starting_salary` value less than 50,000.
+- create a new column that contains the difference between the `median_salary_4yr` and `median_starting_salary`.
+- select the columns relevant for our plotting.
+
+In `R` this would typically look something like:
+```{r}
+#| eval: false
+
+df_filtered <- salaries |>
+  drop_na(median_salary_4yr) |>
+  filter(median_starting_salary > 50000) |>
+  mutate(salary_diff = median_salary_4yr - median_starting_salary) |>
+  select(
+    field_of_study,
+    median_starting_salary,
+    median_salary_4yr,
+    salary_diff
+  )
+```
+
+In roughly the same amount of code, we can do the same cleaning and transformation steps in `polars`.
+One of the additional benefits of `polars` is that the chaining can be done at the beginning of a line - this is very handy when it comes to commenting out lines. In `R` `tidyverse` you often need to also comment out additional pipe operators. 
+
+```{python .marimo}
+#| echo: true
+df_filtered = (
+    salaries.drop_nulls("median_salary_4yr")
+    .filter(pl.col("median_starting_salary") > 50000)
+    .with_columns(
+        salary_diff=pl.col("median_salary_4yr") - pl.col("median_starting_salary")
+    )
+    .select(
+        "field_of_study",
+        "median_starting_salary",
+        "median_salary_4yr",
+        "salary_diff",
+    )
+)
+```
+
+In our plot, we're going to want to order our bars/segments according to how they rank on our newly calculated metric. This is something I have often struggled to accomplish outside of `R` and `tidyverse`. In the `tidyverse`, you can accomplish this easily with factors. In `polars`, we utilised `Enums`, which are practically the same thing. 
+
+The code below shows how we get the `salary_order`, a list of our categorical variable, `field_of_study` according to the metric.
+
+```{python .marimo}
+#| echo: true
+# Order fields of study by median starting salary, so the y axis is sorted.
+salary_order = (
+    df_filtered.group_by("field_of_study")
+    .agg(pl.col("median_starting_salary").median())
+    .sort("median_starting_salary")
+    .get_column("field_of_study")
+    .to_list()
+)
+```
+
+We can then simply cast our variable as an `Enum` based on the order specified above. Simple as. 
+```{python .marimo}
+#| echo: true
+df_plot = df_filtered.with_columns(pl.col("field_of_study").cast(pl.Enum(salary_order)))
+```
+
+For the visualisation, it's always incredibly useful to highlight the points of interest. In order to do this, we need to flag the fields of study that show the greatest difference in their salary. 
+
+The number we want to highlight is arbitrary, and really depends on how our final visualisation turns out. This is where `marimo` shines. We can set a slider for that value, and adjust it as we need. `marimo` will reactively update all code chunks down stream, so we can easily tweak the value. No more manual updates to code necessary.
+
+Move the slider to adjust how many fields get highlighted on the final plot.
+
+```{python .marimo}
+#| echo: true
+top_n = mo.ui.slider(1, 30, value=6, label="Highlight Top N")
+top_n
+```
+
+```{python .marimo}
+#| echo: false
+mo.md(
+    f"You can see how this slider value gets passed on downstream as `top_n.value`. "
+    f"You'll see that the plot below now highlights the top **{top_n.value}** fields of study "
+    f"according to the difference between the median starting salary and median salary after 4 years."
+)
+```
+
+```{python .marimo}
+#| echo: true
+big_diffs = (
+    df_filtered.sort(by="salary_diff", descending=True)
+    .head(top_n.value)
+    .get_column("field_of_study")
+    .to_list()
+)
+
+df_top = df_plot.filter(pl.col("field_of_study").is_in(big_diffs))
+```
+
+## Visualise
+The final visualisation is pretty straight forward, but it's a plot that I often use to show a change in outcome across many different instances, categories, or individuals. 
+
+I use `plotnine` to write pretty much a direct copy of what I would write for `ggplot2`. The key differences are:
+
+- the main `ggplot` function needs to be wrapped in paratheses
+- `+` symbols can be placed at the beginning of a line (big plus for easy commenting)
+- The way I import `plotnine` means that the functions I use require the alias `pn` before use.
+
+I was surprised at how easily I was able to make a `python`/`polars` version of a plot I would typically make in excel. 
+
+My key observations:
+
+- I found `marimo` is great for preventing awkward things happening that I have habits of doing in `R`, such as reassigning the same variable names to new objects.
+- The reactivity of `marimo` is a huge win. If I update something upstream, things just work without needing me to rerun manually. With that being said, web version of this notebook may be a bit slower.
+- Being able to include `marimo`'s UI, such as the slider, was actually useful in my visualisation workflow.
+- `plotnine` is really good and I found it intuitive to use coming from `ggplot2`. The only downside is that it's early in development and more advanced add-ons (e.g., `ggrepel`, `ggforce` for tidying my labels) didn't seem to be readily available. 
+
+
+```{python .marimo}
+#| echo: true
+caption = (
+    "Steven Turnbull | #PydyTuesday #TidyTuesday 2026-10-21\n"
+    "sturbull.github.io | GitHub: sturbull | LinkedIn: steven-martin-turnbull\n"
+    "Data: US Dept. of Education College Scorecard; AI Occupational Exposure (Felten, Raj & Seamans)"
+)
+
+(
+    pn.ggplot()
+    + pn.geom_segment(
+        pn.aes(
+            x="median_starting_salary",
+            xend="median_salary_4yr",
+            y="field_of_study",
+            yend="field_of_study",
+            colour="salary_diff",
+        ),
+        df_plot,
+    )
+    + pn.geom_point(
+        pn.aes(
+            y="field_of_study",
+            x="median_starting_salary",
+            color="salary_diff",
+        ),
+        df_plot,
+    )
+    + pn.geom_text(
+        pn.aes(x="median_salary_4yr", y="field_of_study", label="field_of_study"),
+        df_top,
+        size=7,
+        color="#E6E6E6",
+        adjust_text={
+            "arrowprops": {
+                "arrowstyle": "-",
+                "color": "grey",
+                "alpha": 0.4,
+                "lw": 0.5,
+            }
+        },
+    )
+    + pn.scale_x_continuous(name="Salary (Median $)", labels=label_comma())
+    + pn.ggtitle(
+        "Difference Between Starting Salary and Salary After 4 Years",
+        subtitle=f"Top {df_top.height} fields of study highlighted",
+    )
+    + pn.labs(caption=caption)
+    + pn.theme(
+        figure_size=(8, 10),
+        axis_text_y=pn.element_blank(),
+        axis_ticks_major_y=pn.element_blank(),
+        panel_grid_major_y=pn.element_blank(),
+        panel_grid_minor_y=pn.element_blank(),
+        axis_title_y=pn.element_blank(),
+        legend_position="none",
+        dpi=300,
+        plot_caption=pn.element_text(size=7, ha="left"),
+        plot_caption_position="plot",
+        plot_background=pn.element_rect(fill="#1E2130", colour="#1E2130"),
+        panel_background=pn.element_rect(fill="#1E2130"),
+        text=pn.element_text(colour="#E6E6E6"),
+        panel_grid_major_x=pn.element_line(colour="#3A3F4F"),
+        panel_grid_minor_x=pn.element_blank(),
+    )
+)
+```
+
+
+
+Note a higher quality version of this plot can be viewed [here](../../static/visualisations/2026-10-20-plot.png)
